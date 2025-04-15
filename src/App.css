@@ -44,3 +44,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.bottom_navigator{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 2rem;
+  bottom: 0;
+  background-color: #FFFDD0;
+  border-radius: 20px 20px 0 0;
+}
