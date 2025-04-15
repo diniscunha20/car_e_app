@@ -1,50 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import ultratuxes from './assets/LOGO_TUX_V3(1).png'
-import './App.css'
+// App.jsx
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Appointments from './screens/Appointments';
+import CarDetails from './screens/CarDetails';
+import Home from './screens/Home';
+import Map from './screens/Map';
+import Profile from './screens/Profile';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <a href="https://www.instagram.com/desporto_nei/" target="_blank">
-          <img src={ultratuxes} className="logo tux" alt="tux logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <div className="bottom_navigator">
-        <button className='button shops' onClick={() => setCount((count) => count + 1)}>
-          shops
-        </button>
-        <div className='home'>
-          <button className='button home' onClick={() => setCount((count) => count + 1)}>
-            home
-          </button>
-        </div>
-        <button className='button user' onClick={() => setCount((count) => count + 1)}>
-          user
-        </button>
-      </div>
-    </>
-  )
-}
+      <Router>
+        <div className="p-4">
 
-export default App
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Appointments" element={<Appointments />} />
+            <Route path="/CarDetails" element={<CarDetails />} />
+            <Route path="/Map" element={<Map />} />
+            <Route path="/Profile" element={<Profile />} />
+          </Routes>
+        </div>
+      </Router>
+  );
+}
