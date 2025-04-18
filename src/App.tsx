@@ -1,18 +1,22 @@
-import CarCard from './components/CarCard'
-import NavBar from './components/NavBar'
+// App.tsx
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import LoginPage from './screens/LoginPage'
+import HomePage from './screens/HomePage'
+import CarInfo from './screens/CarInfo'
+import User from './screens/User'
+import Map from './screens/Map'
 
 function App() {
-  return (<>
-  <h1 className = 'text-2xl font-light text-left text-black'>Welcome,</h1>
-  <h1 className = 'text-4xl font-extrabold text-left text-black mb-3'>Claudino.</h1>
-  <CarCard name = 'Renault Clio'/>
-  <CarCard name = 'Fiat Tipo'/>
-  <CarCard name = 'Renault Twingo'/>
-  <NavBar/>
-  </>)
-
-
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/perfil" element={<User />} />
+        <Route path="/car" element={<CarInfo />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
