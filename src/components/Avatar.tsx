@@ -1,4 +1,4 @@
-function Avatar({ name }: { name?: string }, ChangeAccount: () => void) {
+function Avatar({ name, ChangeAccount }: { name?: string; ChangeAccount: () => void }) {
   return (
     <div className="w-2/3 flex items-center justify-start">
       <div className="avatar">
@@ -8,7 +8,7 @@ function Avatar({ name }: { name?: string }, ChangeAccount: () => void) {
       </div>
       <div className="ml-4 flex flex-col items-start">
         <h2 className="text-2xl font-medium text-left text-black">{name}</h2>
-        <button oncClick={ChangeAccount} className="text-sm font-extralight link text-black">mudar de conta</button>
+        <button onClick={ChangeAccount} className="text-sm font-extralight link text-black">mudar de conta</button>
       </div>
     </div>
   );
