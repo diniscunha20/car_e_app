@@ -1,11 +1,10 @@
 // App.tsx
-import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LoginPage from './screens/LoginPage'
 import HomePage from './screens/HomePage'
 import CarInfo from './screens/CarInfo'
 import User from './screens/User'
-import Map from './screens/Map'
+import MapPage from './screens/MapPage'
 
 function App() {
   return (
@@ -14,6 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/perfil" element={<User />} />
         <Route path="/car" element={<CarInfo />} />
+        <Route path="/map" element={<MapPage />} />
       </Routes>
     </Router>
   );

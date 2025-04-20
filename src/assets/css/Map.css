@@ -1,0 +1,11 @@
+.map-container {
+  height: 100vh;
+  width: 100vh;
+  position: relative;
+  z-index: 0; /* or just remove z-index entirely */
+}
+
+.map-component {
+    height: 100%;
+    width: 100%;
+}
