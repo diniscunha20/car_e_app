@@ -1,12 +1,12 @@
 import NavBar from '../components/NavBar'
-import MapComponent from './MapComponent'
+import MapComponent from '../components/MapComponent'
 import React from 'react'
 import "../assets/css/Map.css"
 
 function MapPage() {
   return (<>
-    <MapComponent/>
     <NavBar/>
+    <MapComponent/>
   </>)
 
 

@@ -1,6 +1,6 @@
 // MapComponent.tsx
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
-import "../assets/css/Map.css"
+import "../App.css"
 
 
 
