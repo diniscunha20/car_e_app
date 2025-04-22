@@ -1,10 +1,11 @@
 import NavBar from '../components/NavBar';
+import Events from "../components/Events.tsx";
+import carrosData from '../assets/carros.json'
 
 function CarInfo() {
   return (
     <>
-      <h1 className='text-2xl font-light text-left text-black'>Welcome,</h1>
-      <h1 className='text-4xl font-extrabold text-left text-black mb-3'>Claudino.</h1>
+      <Events events={carrosData.carros[0].eventos}></Events>
       <NavBar />
     </>
   );

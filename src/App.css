@@ -1,3 +1,8 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, bumblebee;
+}
+
 #root {
   max-width: 100%;
   margin:0 auto;
