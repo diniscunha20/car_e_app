@@ -3,13 +3,53 @@
   themes: light --default, dark --prefersdark, bumblebee;
 }
 
+/* Make sure the page can actually take up full height */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 #root {
   max-width: 100%;
-  margin:0 auto;
   padding: 1rem;
   text-align: center;
+  margin:0 auto;
 }
+
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+
 
 .card {
   padding: 0.7em;
   }
+/* Container for the entire page */
+.map-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Map component should expand to fill available space */
+.map-component {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
+/* Leaflet's MapContainer requires explicit height and width */
+.map-container {
+  height: 1000px;
+  width: 100%;
+}

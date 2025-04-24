@@ -7,16 +7,22 @@ import "../App.css"
 const MapComponent = () => {
 
   return (
-        <div className='map-component'>
-            <MapContainer className='map-container' center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
 
-            </MapContainer>
+      <MapContainer
+        center={[51.505, -0.09]}
+        zoom={13}
+        scrollWheelZoom={false}
+        style={{ height: "100vh", width: "100%", zIndex: "0" }} // quick and dirty fullscreen
+        zoomControl={false}
+      >
+        <TileLayer
+          attribution='&copy; OpenStreetMap contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <ZoomControl position="bottomright" />
+      </MapContainer>
 
-        </div>
+
   );
 };
 
