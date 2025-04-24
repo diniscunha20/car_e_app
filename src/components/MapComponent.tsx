@@ -13,13 +13,12 @@ const MapComponent = () => {
         zoom={13}
         scrollWheelZoom={false}
         style={{ height: "100vh", width: "100%", zIndex: "0" }} // quick and dirty fullscreen
-        zoomControl={false}
       >
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <ZoomControl position="bottomright" />
+        <ZoomControl position="topleft" />
       </MapContainer>
 
 

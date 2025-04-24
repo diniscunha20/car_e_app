@@ -1,16 +1,3 @@
-.map-container {
-  height: 80vh;
-  width: 40vh;
-  position: flex;
-  z-index: 0;
-}
-
-.map-component {
-    height: 100%;
-    width: 100%;
-}
-
-.map-page{
-  height: 100%;
-  width: 100%;
+.trullimero_trulliccina {
+  background-color: #f0f0f0;
 }
