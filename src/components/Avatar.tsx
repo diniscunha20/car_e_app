@@ -8,7 +8,7 @@ function Avatar({ name, ChangeAccount }: { name?: string; ChangeAccount: () => v
       </div>
       <div className="ml-4 flex flex-col items-start">
         <h2 className="text-2xl font-medium text-left text-black">{name}</h2>
-        <button onClick={ChangeAccount} className="text-sm font-extralight link text-black">mudar de conta</button>
+        <button onClick={() => window.location.href = '/login'} className="text-sm font-extralight link text-black">mudar de conta</button>
       </div>
     </div>
   );

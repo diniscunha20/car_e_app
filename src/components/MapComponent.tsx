@@ -1,5 +1,6 @@
 // MapComponent.tsx
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
+import "../assets/css/Map.css"
 import "../App.css"
 
 
@@ -18,7 +19,6 @@ const MapComponent = () => {
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <ZoomControl position="topleft" />
       </MapContainer>
 
 
