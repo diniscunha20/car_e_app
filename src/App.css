@@ -14,7 +14,7 @@ html, body, #root {
 
 #root {
   max-width: 100%;
-  padding: 1rem;
+  padding: 0rem;
   text-align: center;
   margin:0 auto;
 }
@@ -33,23 +33,3 @@ body {
 .card {
   padding: 0.7em;
   }
-/* Container for the entire page */
-.map-page {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Map component should expand to fill available space */
-.map-component {
-  flex: 1;
-  height: 100%;
-  width: 100%;
-}
-
-/* Leaflet's MapContainer requires explicit height and width */
-.map-container {
-  height: 1000px;
-  width: 100%;
-}

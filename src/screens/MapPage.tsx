@@ -6,10 +6,10 @@ import "../App.css"
 
 function MapPage() {
   return (<>
-    <div className='map-page'>
+
       <MapComponent/>
       <NavBar/>
-    </div>
+
   </>)
 
 
