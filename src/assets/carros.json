@@ -1,59 +1,58 @@
 {
-    "carros": [
-      {
-        "marca": "Toyota",
-        "modelo": "Corolla",
-        "matricula": "AB-12-CD",
-        "eventos": ["Revisão geral", "Mudar o óleo", "Verificar travões"],
-        "cor_rgb": [255, 0, 0],
-        "data_fabrico": "2018-03-15",
-        "imagem_url": "/images/toyotaCorolla.png"
-      },
-      {
-        "marca": "Volkswagen",
-        "modelo": "Golf",
-        "matricula": "EF-34-GH",
-        "eventos": ["Trocar pneus", "Alinhar direção"],
-        "cor_rgb": [0, 128, 255],
-        "data_fabrico": "2020-07-10",
-        "imagem_url": "/images/vwGolf.png"
-      },
-      {
-        "marca": "BMW",
-        "modelo": "320i",
-        "matricula": "IJ-56-KL",
-        "eventos": ["Revisão geral", "Mudar filtro de ar"],
-        "cor_rgb": [0, 0, 0],
-        "data_fabrico": "2019-11-22",
-        "imagem_url": "/images/bmw.png"
-      },
-      {
-        "marca": "Renault",
-        "modelo": "Clio",
-        "matricula": "MN-78-OP",
-        "eventos": ["Verificar suspensão", "Mudar óleo", "Substituir pastilhas de travão"],
-        "cor_rgb": [255, 255, 0],
-        "data_fabrico": "2017-05-30",
-        "imagem_url": "/images/clio.png"
-      },
-      {
-        "marca": "Ford",
-        "modelo": "Focus",
-        "matricula": "QR-90-ST",
-        "eventos": ["Revisão anual", "Limpeza de injetores"],
-        "cor_rgb": [34, 139, 34],
-        "data_fabrico": "2021-01-18",
-        "imagem_url": "/images/fordFocus.png"
-      },
-      {
-        "marca": "Peugeot",
-        "modelo": "208",
-        "matricula": "UV-12-WX",
-        "eventos": ["Mudar óleo", "Trocar bateria"],
-        "cor_rgb": [128, 0, 128],
-        "data_fabrico": "2022-09-05",
-        "imagem_url": "/images/peugeot208.png"
-      }
-    ]
-  }
-  
+  "carros": [
+    {
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "matricula": "AB-12-CD",
+      "eventos": ["Revisão geral", "Mudar o óleo", "Verificar travões"],
+      "cor_rgb": [255, 255, 255],
+      "data_fabrico": "2018-03-15",
+      "imagem_url": "/images/toyotaCorolla.png"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Golf",
+      "matricula": "EF-34-GH",
+      "eventos": ["Trocar pneus", "Alinhar direção"],
+      "cor_rgb": [255, 255, 255],
+      "data_fabrico": "2020-07-10",
+      "imagem_url": "/images/vwGolf.png"
+    },
+    {
+      "marca": "BMW",
+      "modelo": "320i",
+      "matricula": "IJ-56-KL",
+      "eventos": ["Revisão geral", "Mudar filtro de ar"],
+      "cor_rgb": [255, 0, 0],
+      "data_fabrico": "2019-11-22",
+      "imagem_url": "/images/bmw.png"
+    },
+    {
+      "marca": "Renault",
+      "modelo": "Clio",
+      "matricula": "MN-78-OP",
+      "eventos": ["Verificar suspensão", "Mudar óleo", "Substituir pastilhas de travão"],
+      "cor_rgb": [255, 255, 0],
+      "data_fabrico": "2017-05-30",
+      "imagem_url": "/images/clio.png"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Focus",
+      "matricula": "QR-90-ST",
+      "eventos": ["Revisão anual", "Limpeza de injetores"],
+      "cor_rgb": [0, 0, 0],
+      "data_fabrico": "2021-01-18",
+      "imagem_url": "/images/fordFocus.png"
+    },
+    {
+      "marca": "Peugeot",
+      "modelo": "208",
+      "matricula": "UV-12-WX",
+      "eventos": ["Mudar óleo", "Trocar bateria"],
+      "cor_rgb": [255, 69, 0],
+      "data_fabrico": "2022-09-05",
+      "imagem_url": "/images/peugeot208.png"
+    }
+  ]
+}
