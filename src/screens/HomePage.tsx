@@ -1,26 +1,41 @@
-import CarCard from '../components/CarCard'
-import NavBar from '../components/NavBar'
-import '../App.css'
-import carrosData from '../assets/carros.json'
+import { Link } from 'react-router-dom';
+import CarCard from '../components/CarCard';
+import NavBar from '../components/NavBar';
+import '../App.css';
+import carrosData from '../assets/carros.json';
 
-function HomePage() {
-  const carros = carrosData.carros;
-
-  return (<>
-    <h1 className = 'text-2xl font-light text-left text-black'>Welcome,</h1>
-    <h1 className = 'text-4xl font-extrabold text-left text-black mb-3'>{localStorage.getItem('username') || 'Guest'}</h1>
-  
-    {carros.map((carro, index) => (
-    
-        <CarCard key={index} carro={carro}/>
-      
-    ))}
-    <NavBar/>
-    {/* <Avatar name = 'tira tira que eu vou cagar'/> */}
-  </>)
-
-
+// Define types for the Carro object
+interface Carro {
+  marca: string;
+  modelo: string;
+  matricula: string;
+  eventos: string[];
+  cor_rgb: number[];
+  data_fabrico: string;
+  imagem_url: string;
 }
 
-export default HomePage
+function HomePage() {
+  const carros: Carro[] = carrosData.carros;
+
+  return (
+    <div>
+      <h1 className="text-2xl font-light text-left text-black">Welcome,</h1>
+      <h1 className="text-4xl font-extrabold text-left text-black mb-3">
+        {localStorage.getItem('username') || 'Guest'}
+      </h1>
+  
+      {/* List of cars */}
+      {carros.map((carro, index) => (
+        <Link key={index} to={`/car-details/${carro.matricula}`}>
+          <CarCard carro={carro} />
+        </Link>
+      ))}
+  
+      <NavBar />
+    </div>
+  );
+}
+
+export default HomePage;
 
