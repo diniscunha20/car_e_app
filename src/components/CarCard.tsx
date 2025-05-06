@@ -13,7 +13,10 @@ type Carro = {
 
 
 const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
-    return (
+  const carColor = `rgb(${carro.cor_rgb.join(', ')})`;
+
+  return (
+
       <div className="card bg-gradient-to-bl from-stone-700 to-stone-900 rounded-3xl mb-4 overflow-hidden shadow-xl text-white">
   
         {/* Topo: texto e imagem lado a lado */}
@@ -39,8 +42,10 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
         </div>
   
         {/* Parte de baixo: detalhes ou descrição */}
-        <div className="w-full bg-gradient-to-bl from-stone-900 to-stone-700 text-amber-100 p-4 border-t border-stone-600 text-left rounded-2xl border-2">
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+        <div className="w-full  from-stone-900 to-stone-700 text-amber-100 p-4 border-t border-stone-600 text-left rounded-2xl border-2"
+             style={{ borderColor: carColor }}>
+          <p>Matricula - {carro.matricula}</p>
+          <p>Data fabrico - {carro.data_fabrico}</p>
         </div>
       </div>
     );

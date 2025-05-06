@@ -2,6 +2,8 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark, bumblebee;
 }
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
 
 /* Make sure the page can actually take up full height */
 html, body, #root {
@@ -13,4 +15,6 @@ html, body, #root {
 
 .card {
   padding: 0.7em;
+  font-family: 'Raleway', sans-serif;
+  
   }
