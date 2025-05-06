@@ -19,7 +19,8 @@ function HomePage() {
   const carros: Carro[] = carrosData.carros;
 
   return (
-    <div>
+    <div className='px-3'>
+      <div className='h-300px'>
       <h1 className="text-2xl font-light text-left text-black">Welcome,</h1>
       <h1 className="text-4xl font-extrabold text-left text-black mb-3">
         {localStorage.getItem('username') || 'Guest'}
@@ -31,7 +32,7 @@ function HomePage() {
           <CarCard carro={carro} />
         </Link>
       ))}
-  
+      </div>
       <NavBar />
     </div>
   );

@@ -24,16 +24,16 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
         <div className="h-15 flex flex-row items-center justify-between px-2 mb-3 mt-2">
           {/* Texto à esquerda */}
           <div className="flex flex-row text-left z-2">
-            <h2 className="card-title font-normal text-2xl">
+            <h2 className="card-title font-thin text-3xl">
               {carro.marca}
             </h2>
-            <h1 className="card-title font-bold text-5xl ">
+            <h1 className="card-title font-bold text-6xl ml-3">
               {carro.modelo}
             </h1>
           </div>
   
           {/* Imagem à direita */}
-          <div className="h-40 flex-shrink-0 mt-6 z-10 -ml-7">
+          <div className="h-29 flex-shrink-0 mt-15 z-10 -ml-10">
             <img
               src={carro.imagem_url}
               alt={`${carro.marca} ${carro.modelo}`}
