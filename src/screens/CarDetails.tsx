@@ -1,25 +1,18 @@
-import React from 'react';
+import React,{ useState }  from 'react';
 import { useParams } from 'react-router-dom';
 import carrosData from '../assets/carros.json';
 import NavBar from '../components/NavBar';
 import "../assets/css/CarCard.css"
+import EventForms from '../components/EventForms';
+import { Carro } from '../assets/Carro';
 
 
 
-// Define types for the Carro object
-interface Carro {
-  marca: string;
-  modelo: string;
-  matricula: string;
-  eventos: Record<string, string>; // keys are event names, values are ISO date strings
-  cor_rgb: number[];
-  data_fabrico: string;
-  imagem_url: string;
-  quilometragem: number; // also added the kilometers field
-}
+
 
 
 const CarDetails: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
   const { matricula } = useParams<{ matricula: string }>(); // Get matricula from URL
 
   // Find the car based on matricula
@@ -59,7 +52,7 @@ const CarDetails: React.FC = () => {
       <img
         src={carro.imagem_url}
         alt={`${carro.marca} ${carro.modelo}`}
-        className="ml-30 w-full h-full object-cover rounded-l-3xl"
+        className="ml-37 w-full h-full object-cover rounded-l-3xl"
       />
     </div>
 
@@ -89,23 +82,63 @@ const CarDetails: React.FC = () => {
 
           </div>
 
-          <div className='h-3/4'>
+          <div className='h-3/4' style={{ color: 'rgb(250, 234, 189)' }}>
 
             <div className='h-1/11'>
-                <h1 className="card-title font-normal text-2xl ml-6 mt-4 italic" 
-                style={{ color: 'rgb(250, 234, 189)' }}>
+                <h1 className="card-title font-normal text-2xl ml-6 mt-4 italic">
                   {carro.matricula}
                 </h1>
             </div>
 
-            <h2 className="text-xl font-bold mb-2">Eventos</h2>
+
+            <div className='h-2/11'>
+
             
-              {Object.entries(carro.eventos).map(([evento, data]) => (
-                <div className='h-1/10 w-[95%] mt-2  flex items-center rounded-r-2xl' key={evento} style={{ backgroundColor: carColor }}>
-                  <h1 className='ml-3'><strong>{evento}:</strong> {data}</h1>
-                </div>
-              ))}
-            
+                <h2 className="text-xl font-bold mb-2 ml-3 ">Proximo evento </h2>
+
+                {Object.entries(carro.eventos).slice(0, 1).map(([evento, data], index) => (
+                  <div
+                    className={`h-1/2 w-[95%] flex items-center rounded-r-3xl`}
+                    key={evento}
+                    style={{ backgroundColor: carColor }}
+                  >
+                    <h1 className="ml-3">
+                      <strong>{evento}:</strong> {data}
+                    </h1>
+                  </div>
+                ))}
+
+            </div>
+
+            <h2 className="text-xl font-bold  ml-3 mt-4">Outros </h2>
+            <div className='h-[55%] overflow-y-auto'>
+
+                {Object.entries(carro.eventos).slice(1).map(([evento, data], index) => (
+                  <div
+                    className={`h-1/4 mt-4 w-[95%] flex items-center ${index % 2 === 0 ? 'rounded-l-3xl ml-5' : 'rounded-r-3xl'}`}
+                    key={evento}
+                    style={{ backgroundColor: carColor }}
+                  >
+                    <h1 className={`${index % 2 === 0 ? 'ml-5' : 'ml-10'}`}>
+                      <strong>{evento}:</strong> {data}
+                    </h1>
+                  </div>
+                ))}
+            </div>
+
+            <div className='h-[5%]'>
+            <div className='h-[5%] items-center flex justify-end'>
+              <button
+                onClick={() => setShowModal(true)}
+                className="bg-white text-3xl font-bold rounded-full size-6 shadow-lg mr-15 mt-8"
+                style={{ color: carColor }}
+              >
+                <h1 className='font-bold -mt-2'>+</h1>
+              </button>
+            </div>
+
+            </div>
+
           </div>
 
         <div className='fixed'>
@@ -113,9 +146,22 @@ const CarDetails: React.FC = () => {
 
         </div>
       </div>
-
+      {showModal && (
+      <div
+        className="fixed inset-0 bg-black/70 flex justify-center items-center z-20"
+        onClick={() => setShowModal(false)}
+      >
+        <div
+          className="h-[35%] bg-white p-6 rounded-2xl shadow-2xl w-96 ml-3 mr-3 z-30"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <EventForms carro={carro} ></EventForms>
+        </div>
+      </div>
+    )}
       
     </div>
+    
   );
 }
 
