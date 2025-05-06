@@ -1,24 +1,6 @@
 {
   "carros": [
     {
-      "marca": "Toyota",
-      "modelo": "Corolla",
-      "matricula": "AB-12-CD",
-      "eventos": ["Revisão geral", "Mudar o óleo", "Verificar travões"],
-      "cor_rgb": [255, 255, 255],
-      "data_fabrico": "2018-03-15",
-      "imagem_url": "/images/toyotaCorolla.png"
-    },
-    {
-      "marca": "Volkswagen",
-      "modelo": "Golf",
-      "matricula": "EF-34-GH",
-      "eventos": ["Trocar pneus", "Alinhar direção"],
-      "cor_rgb": [255, 255, 255],
-      "data_fabrico": "2020-07-10",
-      "imagem_url": "/images/vwGolf.png"
-    },
-    {
       "marca": "BMW",
       "modelo": "320i",
       "matricula": "IJ-56-KL",
@@ -53,6 +35,24 @@
       "cor_rgb": [255, 69, 0],
       "data_fabrico": "2022-09-05",
       "imagem_url": "/images/peugeot208.png"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "matricula": "AB-12-CD",
+      "eventos": ["Revisão geral", "Mudar o óleo", "Verificar travões"],
+      "cor_rgb": [255, 255, 255],
+      "data_fabrico": "2018-03-15",
+      "imagem_url": "/images/toyotaCorolla.png"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Golf",
+      "matricula": "EF-34-GH",
+      "eventos": ["Trocar pneus", "Alinhar direção"],
+      "cor_rgb": [255, 255, 255],
+      "data_fabrico": "2020-07-10",
+      "imagem_url": "/images/vwGolf.png"
     }
   ]
 }

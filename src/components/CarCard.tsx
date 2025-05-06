@@ -17,22 +17,23 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
 
   return (
 
-      <div className="card bg-gradient-to-bl from-stone-700 to-stone-900 rounded-3xl mb-4 overflow-hidden shadow-xl text-white">
+      <div className="card bg-stone-700  rounded-3xl mb-4 overflow-hidden shadow-xl text-white"
+              style={{ color: '#F8F8E0' }}>
   
         {/* Topo: texto e imagem lado a lado */}
         <div className="h-15 flex flex-row items-center justify-between px-2 mb-3 mt-2">
           {/* Texto à esquerda */}
-          <div className="flex flex-col text-left">
-            <h2 className="card-title font-medium text-2xl">
+          <div className="flex flex-row text-left z-2">
+            <h2 className="card-title font-normal text-2xl">
               {carro.marca}
             </h2>
-            <h1 className="card-title font-bold text-2xl ">
+            <h1 className="card-title font-bold text-5xl ">
               {carro.modelo}
             </h1>
           </div>
   
           {/* Imagem à direita */}
-          <div className="h-32 flex-shrink-0 mt-4 z-10">
+          <div className="h-40 flex-shrink-0 mt-6 z-10 -ml-7">
             <img
               src={carro.imagem_url}
               alt={`${carro.marca} ${carro.modelo}`}
@@ -42,7 +43,7 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
         </div>
   
         {/* Parte de baixo: detalhes ou descrição */}
-        <div className="w-full  from-stone-900 to-stone-700 text-amber-100 p-4 border-t border-stone-600 text-left rounded-2xl border-2"
+        <div className="w-full  from-stone-900 to-stone-700 p-4 border-t border-stone-600 text-left rounded-2xl border-2"
              style={{ borderColor: carColor }}>
           <p>Matricula - {carro.matricula}</p>
           <p>Data fabrico - {carro.data_fabrico}</p>
