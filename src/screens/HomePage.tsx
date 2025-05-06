@@ -20,7 +20,7 @@ function HomePage() {
   const carros: Carro[] = carrosData.carros;
 
   return (
-    <div className='px-3'>
+    <div className='px-3 mt-5'>
         <h1 className="text-2xl font-light text-left text-black">Welcome,</h1>
         <h1 className="text-4xl font-extrabold text-left text-black mb-3">
           {localStorage.getItem('username') || 'Guest'}
