@@ -4,55 +4,91 @@
       "marca": "BMW",
       "modelo": "320i",
       "matricula": "IJ-56-KL",
-      "eventos": ["Revisão geral", "Mudar filtro de ar"],
-      "cor_rgb": [255, 0, 0],
+      "eventos": {
+        "Revisão geral": "2025-07-15",
+        "Mudar filtro de ar": "2025-06-01",
+        "Verificar travões": "2025-08-10",
+        "Substituir óleo do motor": "2025-07-01"
+      },
+      "cor_rgb": [156, 16, 6],
       "data_fabrico": "2019-11-22",
-      "imagem_url": "/images/bmw.png"
+      "imagem_url": "/images/bmw.png",
+      "quilometragem": 87500
     },
     {
       "marca": "Renault",
       "modelo": "Clio",
       "matricula": "MN-78-OP",
-      "eventos": ["Verificar suspensão", "Mudar óleo", "Substituir pastilhas de travão"],
+      "eventos": {
+        "Verificar suspensão": "2025-05-20",
+        "Mudar óleo": "2025-06-10",
+        "Substituir pastilhas de travão": "2025-06-25",
+        "Verificar ar condicionado": "2025-07-05"
+      },
       "cor_rgb": [255, 255, 0],
       "data_fabrico": "2017-05-30",
-      "imagem_url": "/images/clio.png"
+      "imagem_url": "/images/clio.png",
+      "quilometragem": 129000
     },
     {
       "marca": "Ford",
       "modelo": "Focus",
       "matricula": "QR-90-ST",
-      "eventos": ["Revisão anual", "Limpeza de injetores"],
+      "eventos": {
+        "Revisão anual": "2025-08-01",
+        "Limpeza de injetores": "2025-09-10",
+        "Trocar bateria": "2025-10-01",
+        "Atualizar software da ECU": "2025-07-20"
+      },
       "cor_rgb": [0, 0, 0],
       "data_fabrico": "2021-01-18",
-      "imagem_url": "/images/fordFocus.png"
+      "imagem_url": "/images/fordFocus.png",
+      "quilometragem": 62000
     },
     {
       "marca": "Peugeot",
       "modelo": "208",
       "matricula": "UV-12-WX",
-      "eventos": ["Mudar óleo", "Trocar bateria"],
+      "eventos": {
+        "Mudar óleo": "2025-06-15",
+        "Trocar bateria": "2025-07-01",
+        "Balancear rodas": "2025-06-20",
+        "Verificar luzes": "2025-07-05"
+      },
       "cor_rgb": [255, 69, 0],
       "data_fabrico": "2022-09-05",
-      "imagem_url": "/images/peugeot208.png"
+      "imagem_url": "/images/peugeot208.png",
+      "quilometragem": 28000
     },
     {
       "marca": "Toyota",
       "modelo": "Corolla",
       "matricula": "AB-12-CD",
-      "eventos": ["Revisão geral", "Mudar o óleo", "Verificar travões"],
+      "eventos": {
+        "Revisão geral": "2025-07-10",
+        "Mudar o óleo": "2025-06-05",
+        "Verificar travões": "2025-06-25",
+        "Calibrar sensores": "2025-07-15"
+      },
       "cor_rgb": [255, 255, 255],
       "data_fabrico": "2018-03-15",
-      "imagem_url": "/images/toyotaCorolla.png"
+      "imagem_url": "/images/toyotaCorolla.png",
+      "quilometragem": 104000
     },
     {
       "marca": "Volkswagen",
       "modelo": "Golf",
       "matricula": "EF-34-GH",
-      "eventos": ["Trocar pneus", "Alinhar direção"],
+      "eventos": {
+        "Trocar pneus": "2025-08-01",
+        "Alinhar direção": "2025-08-15",
+        "Verificar emissões": "2025-09-01",
+        "Recarregar ar condicionado": "2025-07-20"
+      },
       "cor_rgb": [255, 255, 255],
       "data_fabrico": "2020-07-10",
-      "imagem_url": "/images/vwGolf.png"
+      "imagem_url": "/images/vwGolf.png",
+      "quilometragem": 77000
     }
   ]
 }

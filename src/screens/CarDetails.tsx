@@ -11,11 +11,13 @@ interface Carro {
   marca: string;
   modelo: string;
   matricula: string;
-  eventos: string[];
+  eventos: Record<string, string>; // keys are event names, values are ISO date strings
   cor_rgb: number[];
   data_fabrico: string;
   imagem_url: string;
+  quilometragem: number; // also added the kilometers field
 }
+
 
 const CarDetails: React.FC = () => {
   const { matricula } = useParams<{ matricula: string }>(); // Get matricula from URL
@@ -29,19 +31,45 @@ const CarDetails: React.FC = () => {
     console.log("car:", carro)
   }
 
+
+
+
+  const brightenColor = (color: string): string => {
+
+    const [r, g, b] = color.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
+  
+    const brightenFactor = 20;
+  
+    const newColor = `rgb(${Math.min(r + brightenFactor, 255)}, ${Math.min(g + brightenFactor, 255)}, ${Math.min(b + brightenFactor, 255)})`;
+  
+    return newColor;
+  };
+  
   const carColor = `rgb(${carro.cor_rgb.join(', ')})`;
+  const brightCarColor = brightenColor(carColor);
+
+
 
   return (
     
     <div className="text-black h-full w-full "
-      style={{ backgroundColor: carColor }}> {/* Add text-black here */}
+      style={{ backgroundColor: brightCarColor }}> {/* Add text-black here */}
+
+    <div className="absolute h-70 w-full flex-shrink-0 mt-5 z-10  overflow-x-hidden">
+      <img
+        src={carro.imagem_url}
+        alt={`${carro.marca} ${carro.modelo}`}
+        className="ml-30 w-full h-full object-cover rounded-l-3xl"
+      />
+    </div>
+
       
-      <div className="car-details h-11/12">
+      <div className="relative car-details h-11/12">
             
-          <div className='h-1/4 rounded-b-4xl'
+          <div className='relative h-1/4 rounded-b-4xl'
             style={{ backgroundColor: 'rgb(250, 234, 189)' }}>
 
-            <div className="h-full ml-10 flex flex-row">
+            <div className="h-full ml-2 flex flex-row">
 
               <div className='flex-col z-0'>
 
@@ -55,29 +83,37 @@ const CarDetails: React.FC = () => {
 
               </div>
 
-              <div className='absolute right-0 top-0 z-10 w-96'>
-                <img
-                  src={carro.imagem_url}
-                  alt={`${carro.marca} ${carro.modelo}`}
-                />
-              </div>
+              
 
             </div>
 
           </div>
 
-          <div className='h-3/4' >
-              <p className="text-black"><strong>Matricula:</strong> {carro.matricula}</p>
-              <p className="text-black"><strong>Data de Fabrico:</strong> {carro.data_fabrico}</p>
-              <p className="text-black"><strong>Eventos:</strong> {carro.eventos.join(', ')}</p>
-              <p className="text-black"><strong>Color:</strong> RGB({carro.cor_rgb.join(', ')})</p>
-          </div>
+          <div className='h-3/4'>
+
+            <div className='h-1/11'>
+                <h1 className="card-title font-normal text-2xl ml-6 mt-4 italic" 
+                style={{ color: 'rgb(250, 234, 189)' }}>
+                  {carro.matricula}
+                </h1>
+            </div>
+
+            <h2 className="text-xl font-bold mb-2">Eventos</h2>
             
+              {Object.entries(carro.eventos).map(([evento, data]) => (
+                <div className='h-1/10 w-[95%] mt-2  flex items-center rounded-r-2xl' key={evento} style={{ backgroundColor: carColor }}>
+                  <h1 className='ml-3'><strong>{evento}:</strong> {data}</h1>
+                </div>
+              ))}
+            
+          </div>
+
+        <div className='fixed'>
+          <NavBar />
+
+        </div>
       </div>
 
-      <div className='h-1/12'>
-        <NavBar />
-      </div>
       
     </div>
   );

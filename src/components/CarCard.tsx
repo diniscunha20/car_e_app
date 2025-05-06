@@ -1,15 +1,16 @@
 import React from 'react';
 import "../assets/css/CarCard.css"
 
-type Carro = {
-    marca: string;
-    modelo: string;
-    matricula: string;
-    eventos: string[];
-    cor_rgb: number[]; // relax this type to avoid strict length checking
-    data_fabrico: string;
-    imagem_url: string;
-};
+interface Carro {
+  marca: string;
+  modelo: string;
+  matricula: string;
+  eventos: Record<string, string>; // keys are event names, values are ISO date strings
+  cor_rgb: number[];
+  data_fabrico: string;
+  imagem_url: string;
+  quilometragem: number; // also added the kilometers field
+}
 
 
 const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
@@ -47,6 +48,7 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
              style={{ borderColor: carColor }}>
           <p>Matricula - {carro.matricula}</p>
           <p>Data fabrico - {carro.data_fabrico}</p>
+          <p>Quilometragem - {carro.quilometragem}km</p>
         </div>
       </div>
     );
