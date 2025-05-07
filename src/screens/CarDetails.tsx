@@ -14,16 +14,20 @@ import { Carro } from '../assets/Carro';
 const CarDetails: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const { matricula } = useParams<{ matricula: string }>(); // Get matricula from URL
+  
 
-  // Find the car based on matricula
-  const carro = carrosData.carros.find((car) => car.matricula === matricula);
+  const stored = localStorage.getItem('carros');
+  if (!stored) return <p>No data in localStorage</p>;
+
+  const carros: Carro[] = JSON.parse(stored);
+
+  const carro = carros.find((car) => car.matricula === matricula);
 
   if (!carro) {
     return <p>Car not found</p>;
-  }else{
-    console.log("car:", carro)
+  } else {
+    console.log("Car from localStorage:", carro);
   }
-
 
 
 
@@ -61,6 +65,12 @@ const CarDetails: React.FC = () => {
             
           <div className='relative h-1/4 rounded-b-4xl'
             style={{ backgroundColor: 'rgb(250, 234, 189)' }}>
+              <button 
+                onClick={() => window.history.back()} 
+                className="text-black hover:underline ml-3 mt-4 absolute z-40"
+              >
+                &lt;
+              </button>
 
             <div className="h-full ml-2 flex flex-row">
 
@@ -98,13 +108,23 @@ const CarDetails: React.FC = () => {
 
                 {Object.entries(carro.eventos).slice(0, 1).map(([evento, data], index) => (
                   <div
-                    className={`h-1/2 w-[95%] flex items-center rounded-r-3xl`}
+                    className={`h-3/4 w-[95%] flex items-center rounded-r-3xl`}
                     key={evento}
                     style={{ backgroundColor: carColor }}
                   >
-                    <h1 className="ml-3">
+
+                    <h1 className="ml-3 w-[70%]">
                       <strong>{evento}:</strong> {data}
                     </h1>
+
+                    <button
+                      className="-ml-5 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
+                      style={{ backgroundColor: brightCarColor }}
+
+                    >
+                      Marcar
+                    </button>
+
                   </div>
                 ))}
 
@@ -119,9 +139,10 @@ const CarDetails: React.FC = () => {
                     key={evento}
                     style={{ backgroundColor: carColor }}
                   >
-                    <h1 className={`${index % 2 === 0 ? 'ml-5' : 'ml-10'}`}>
+                    <h1 className={` ${index % 2 === 0 ? 'ml-5 w-[70%]' : 'ml-10 w-[55%] '}`}>
                       <strong>{evento}:</strong> {data}
                     </h1>
+
                   </div>
                 ))}
             </div>
