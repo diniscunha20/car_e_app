@@ -17,7 +17,7 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content }
         <div className="h-6/10 bg-stone-800 fixed bottom-0 left-0 right-0 rounded-t-3xl"
         onClick={(e) => e.stopPropagation()}>
 
-            <div className="flex-col justify-between items-center p-4 h-full">
+            <div className="flex-col justify-between items-center p-4 h-full justify-center items-center">
                 <div className='h-7/10 w-full'>
                     <div className='h-3/20 mt-4 rounded-3xl bg-white flex flex-row '>
                         <div className='w-6/10 text-black flex items-center justify-center'>
@@ -48,17 +48,16 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content }
 
                         </div>
 
-                        <div className=''>
-                            <img></img>
+                        <div className='h-full flex justify-end'>
                             <img
-                            src="/images/Oficina.jpg"
-                            className="w-full h-full object-cover rounded-l-3xl"
-                        />
+                                src="/images/Oficina.jpg"
+                                className="w-9/10 h-9/10 object-cover rounded-xl left-10"
+                            />
                             
                         </div>
                     </div>
                 </div>
-                <button onClick={onClose} className="bg-white text-red-500 font-bold rounded-full shadow-lg">Fazer marcação</button>
+                <button className="ml-5 -mt-7 bg-white text-black font-bold px-2 py-3 rounded-full shadow-lg w-9/10">Fazer marcação</button>
             </div>
         </div>
     </div>
