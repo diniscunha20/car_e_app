@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@googlemaps/markerclusterer": "^2.5.3",
     "@googlemaps/react-wrapper": "^1.2.0",
+    "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.4",
     "daisyui": "^5.0.20",
     "leaflet": "^1.9.4",

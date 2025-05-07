@@ -14,23 +14,18 @@ function NavBarIcon({ icon, path }: NavBarIconProps) {
 
   return (
     <button
-      className={`${isActive ? "black-border-G" : "black-border"}`}
-      onClick={() => {
-
-        navigate(path); 
-      }}
-    >
-      <svg
-        className='size-[3em]'
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="2"
-        stroke="black"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
-      </svg>
-      <span className="dock-label"></span>
+        <svg
+          className='size-[3em]'
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="black"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
+        </svg>
+        <span className="dock-label"></span>
     </button>
   );
 }

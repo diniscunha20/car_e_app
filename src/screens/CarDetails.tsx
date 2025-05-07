@@ -1,5 +1,5 @@
 import React,{ useState }  from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import carrosData from '../assets/carros.json';
 import NavBar from '../components/NavBar';
 import "../assets/css/CarCard.css"
@@ -11,9 +11,11 @@ import { Carro } from '../assets/Carro';
 
 
 
+
 const CarDetails: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const { matricula } = useParams<{ matricula: string }>(); // Get matricula from URL
+  const { matricula } = useParams<{ matricula: string }>();
+  const navigate = useNavigate();
   
 
   const stored = localStorage.getItem('carros');
@@ -31,26 +33,46 @@ const CarDetails: React.FC = () => {
 
 
 
-  const brightenColor = (color: string): string => {
-
+  const adjustColorBrightness = (color: string): { baseColor: string; brightColor: string; textColor: string } => {
     const [r, g, b] = color.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
   
-    const brightenFactor = 20;
+    const brightness = 0.299 * r + 0.587 * g + 0.114 * b;
+    const factor = 40;
   
-    const newColor = `rgb(${Math.min(r + brightenFactor, 255)}, ${Math.min(g + brightenFactor, 255)}, ${Math.min(b + brightenFactor, 255)})`;
+    let newR: number, newG: number, newB: number;
+    let baseColor: string, brightColor: string, textColor: string;
   
-    return newColor;
+    if (brightness > 186) {
+      // Bright color — darken it, and swap
+      newR = Math.max(r - factor, 0);
+      newG = Math.max(g - factor, 0);
+      newB = Math.max(b - factor, 0);
+      baseColor = `rgb(${newR}, ${newG}, ${newB})`;
+      brightColor = color; // original was bright
+      textColor = 'black'; // Use black text on bright backgrounds
+    } else {
+      // Dark color — brighten it
+      newR = Math.min(r + factor, 255);
+      newG = Math.min(g + factor, 255);
+      newB = Math.min(b + factor, 255);
+      baseColor = color; // original was dark
+      brightColor = `rgb(${newR}, ${newG}, ${newB})`;
+      textColor = 'rgb(250, 234, 189)'; // Use white text on dark backgrounds
+    }
+  
+    return { baseColor, brightColor, textColor };
   };
   
+  
   const carColor = `rgb(${carro.cor_rgb.join(', ')})`;
-  const brightCarColor = brightenColor(carColor);
+  const { baseColor, brightColor, textColor } = adjustColorBrightness(carColor);
 
 
 
   return (
     
     <div className="text-black h-full w-full "
-      style={{ backgroundColor: brightCarColor }}> {/* Add text-black here */}
+      style={{ backgroundColor: brightColor }}> {/* Add text-black here */}
 
     <div className="absolute h-70 w-full flex-shrink-0 mt-5 z-10  overflow-x-hidden">
       <img
@@ -92,7 +114,7 @@ const CarDetails: React.FC = () => {
 
           </div>
 
-          <div className='h-3/4' style={{ color: 'rgb(250, 234, 189)' }}>
+          <div className='h-3/4' style={{color: textColor  }}>
 
             <div className='h-1/11'>
                 <h1 className="card-title font-normal text-2xl ml-6 mt-4 italic">
@@ -102,15 +124,14 @@ const CarDetails: React.FC = () => {
 
 
             <div className='h-2/11'>
-
             
-                <h2 className="text-xl font-bold mb-2 ml-3 ">Proximo evento </h2>
+                <h2 className="text-xl font-bold mb-2 ml-3" style={{color: textColor  }}>Proximo evento </h2>
 
                 {Object.entries(carro.eventos).slice(0, 1).map(([evento, data], index) => (
                   <div
                     className={`h-3/4 w-[95%] flex items-center rounded-r-3xl`}
                     key={evento}
-                    style={{ backgroundColor: carColor }}
+                    style={{ backgroundColor: baseColor, color: textColor }}
                   >
 
                     <h1 className="ml-3 w-[70%]">
@@ -118,9 +139,9 @@ const CarDetails: React.FC = () => {
                     </h1>
 
                     <button
-                      className="-ml-5 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
-                      style={{ backgroundColor: brightCarColor }}
-
+                      className="-ml-5 px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
+                      style={{ backgroundColor: brightColor, color: textColor  }}
+                      onClick={() => navigate("/map")}
                     >
                       Marcar
                     </button>
@@ -130,14 +151,14 @@ const CarDetails: React.FC = () => {
 
             </div>
 
-            <h2 className="text-xl font-bold  ml-3 mt-4">Outros </h2>
+            <h2 className="text-xl font-bold  ml-3 mt-10 border-t-4 py-2" style={{borderColor: textColor,color: textColor  }}>Outros </h2>
             <div className='h-[55%] overflow-y-auto'>
 
                 {Object.entries(carro.eventos).slice(1).map(([evento, data], index) => (
                   <div
                     className={`h-1/4 mt-4 w-[95%] flex items-center ${index % 2 === 0 ? 'rounded-l-3xl ml-5' : 'rounded-r-3xl'}`}
                     key={evento}
-                    style={{ backgroundColor: carColor }}
+                    style={{ backgroundColor: baseColor }}
                   >
                     <h1 className={` ${index % 2 === 0 ? 'ml-5 w-[70%]' : 'ml-10 w-[55%] '}`}>
                       <strong>{evento}:</strong> {data}
@@ -151,8 +172,8 @@ const CarDetails: React.FC = () => {
             <div className='h-[5%] items-center flex justify-end'>
               <button
                 onClick={() => setShowModal(true)}
-                className="bg-white text-3xl font-bold rounded-full size-6 shadow-lg mr-15 mt-8"
-                style={{ color: carColor }}
+                className=" text-3xl font-bold rounded-full size-6 shadow-lg mr-15 mt-8"
+                style={{ color: baseColor, background: textColor }}
               >
                 <h1 className='font-bold -mt-2'>+</h1>
               </button>

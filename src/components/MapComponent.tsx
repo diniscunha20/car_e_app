@@ -6,6 +6,8 @@ import "../assets/css/Map.css";
 import "../App.css";
 import AutoShopPopUp from './AutoShopPopUp';
 import MapController from './MapController';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 const MapComponent = () => {
@@ -42,35 +44,41 @@ const MapComponent = () => {
 
   return (
     <div className='relative'>
-		<div className="absolute z-10 left-16 top-4 w-64">
-		<input
+		<div className='relative'>
+		<div className="absolute z-10 left-19 top-4 w-64">
+			<input
 			type="text"
 			value={searchQuery}
 			onChange={(e) => setSearchQuery(e.target.value)}
 			placeholder="Search a place..."
-			className="p-2 bg-white rounded-t-md shadow-md w-full text-black"
-		/>
-
+			className="p-2 bg-stone-800 rounded-t-md shadow-md w-full text-white pl-10" // Added padding to make space for the icon
+			/>
+			<FontAwesomeIcon
+			icon={faSearch}
+			className="absolute mt-3 left-3 transform text-white text-lg"
+			/>
+			
 			{searchQuery && (
-				<ul className="bg-white border border-gray-300 shadow-md rounded-b-md max-h-48 overflow-y-auto">
+			<ul className="bg-stone-800 border border-gray-300 shadow-md rounded-b-md max-h-48 overflow-y-auto">
 				{markers
-					.filter((marker) =>
+				.filter((marker) =>
 					marker.name.toLowerCase().includes(searchQuery.toLowerCase())
-					)
-					.map((marker, idx) => (
+				)
+				.map((marker, idx) => (
 					<li
-						key={idx}
-						onClick={() => {
+					key={idx}
+					onClick={() => {
 						handleSearchSelect(marker);
 						setSearchQuery(""); 
-						}}
-						className="p-2 cursor-pointer hover:bg-orange-100 text-black"
+					}}
+					className="p-2 cursor-pointer hover:bg-orange-100 text-white"
 					>
-						{marker.name}
+					{marker.name}
 					</li>
-					))}
-				</ul>
+				))}
+			</ul>
 			)}
+		</div>
 		</div>
 
 
@@ -109,6 +117,9 @@ const MapComponent = () => {
         onClose={handleClosePopup}
         content={popupContent}
       />
+
+	  
+      
     </div>
   );
 };
