@@ -42,15 +42,37 @@ const MapComponent = () => {
 
   return (
     <div className='relative'>
-      <div className='absolute z-10 left-17 top-4'>
+		<div className="absolute z-10 left-16 top-4 w-64">
 		<input
 			type="text"
 			value={searchQuery}
 			onChange={(e) => setSearchQuery(e.target.value)}
 			placeholder="Search a place..."
-			className="p-2 bg-white rounded shadow-md w-64 text-black"
+			className="p-2 bg-white rounded-t-md shadow-md w-full text-black"
 		/>
+
+			{searchQuery && (
+				<ul className="bg-white border border-gray-300 shadow-md rounded-b-md max-h-48 overflow-y-auto">
+				{markers
+					.filter((marker) =>
+					marker.name.toLowerCase().includes(searchQuery.toLowerCase())
+					)
+					.map((marker, idx) => (
+					<li
+						key={idx}
+						onClick={() => {
+						handleSearchSelect(marker);
+						setSearchQuery(""); 
+						}}
+						className="p-2 cursor-pointer hover:bg-orange-100 text-black"
+					>
+						{marker.name}
+					</li>
+					))}
+				</ul>
+			)}
 		</div>
+
 
 
       <MapContainer
