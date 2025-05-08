@@ -4,19 +4,18 @@ import carrosData from '../assets/carros.json';
 import NavBar from '../components/NavBar';
 import "../assets/css/CarCard.css"
 import EventForms from '../components/EventForms';
+import EventDetailsForm from "../components/EventDetailsForm.tsx";
 import { Carro } from '../assets/Carro';
-
-
-
-
-
 
 
 const CarDetails: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showModalEventInfo, setShowModalEventInfo] = useState(false);
   const { matricula } = useParams<{ matricula: string }>();
   const navigate = useNavigate();
-  
+
+  const [selectedData, selectedDataUpdate] = useState("");
+  const [selectedDesc, selectedDescUpdate] = useState("");
 
   const stored = localStorage.getItem('carros');
   if (!stored) return <p>No data in localStorage</p>;
@@ -159,6 +158,11 @@ const CarDetails: React.FC = () => {
                     className={`h-1/4 mt-4 w-[95%] flex items-center ${index % 2 === 0 ? 'rounded-l-3xl ml-5' : 'rounded-r-3xl'}`}
                     key={evento}
                     style={{ backgroundColor: baseColor }}
+                    onClick={() => {
+                      setShowModalEventInfo(true)
+                      selectedDataUpdate(data)
+                      selectedDescUpdate(evento)
+                    }}
                   >
                     <h1 className={` ${index % 2 === 0 ? 'ml-5 w-[70%]' : 'ml-10 w-[55%] '}`}>
                       <strong>{evento}:</strong> {data}
@@ -188,16 +192,43 @@ const CarDetails: React.FC = () => {
 
         </div>
       </div>
+
       {showModal && (
       <div
         className="fixed inset-0 bg-black/70 flex justify-center items-center z-20"
         onClick={() => setShowModal(false)}
       >
+        <button
+          onClick={() => setShowModalEventInfo(false)}
+          className="text-black hover:underline ml-3 mt-4"
+        >
+          &lt;
+        </button>
         <div
           className="h-[35%] bg-white p-6 rounded-2xl shadow-2xl w-96 ml-3 mr-3 z-30"
           onClick={(e) => e.stopPropagation()}
         >
-          <EventForms carro={carro} ></EventForms>
+          <EventForms></EventForms>
+        </div>
+      </div>
+    )}
+
+    {showModalEventInfo && (
+      <div
+        className="fixed inset-0 bg-black/70 flex justify-center items-center z-20"
+        onClick={() => setShowModalEventInfo(false)}
+      >
+        <div
+          className="bg-white p-6 rounded-2xl shadow-2xl w-96 ml-3 mr-3 z-30"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={() => setShowModalEventInfo(false)}
+            className="text-black hover:underline ml-3 mt-4"
+          >
+            &lt;
+          </button>
+          <EventDetailsForm data={selectedData} desc={selectedDesc} ></EventDetailsForm>
         </div>
       </div>
     )}
