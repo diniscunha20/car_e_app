@@ -4,10 +4,12 @@ import CarCard from '../components/CarCard';
 import NavBar from '../components/NavBar';
 import '../App.css';
 import carrosData from '../assets/carros.json';
-import { Carro } from '../assets/Carro';
+import OficinasData from '../assets/oficinas.json'
+import { Carro,Oficina } from '../assets/Props';
 
 function HomePage() {
   const [carros, setCarros] = useState<Carro[]>([]);
+  const [oficinas, setOficinas] = useState<Oficina[]>([]);
 
   useEffect(() => {
     const stored = localStorage.getItem('carros');
@@ -18,6 +20,17 @@ function HomePage() {
       // Store the JSON data in localStorage on first load
       localStorage.setItem('carros', JSON.stringify(carrosData.carros));
       setCarros(carrosData.carros);
+    }
+  }, []);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('oficinas');
+    if (stored) {
+      console.log("oficinas:",JSON.parse(stored))
+      setOficinas(JSON.parse(stored));
+    } else {
+      localStorage.setItem('oficinas', JSON.stringify(OficinasData.oficinas));
+      setOficinas(OficinasData.oficinas);
     }
   }, []);
 

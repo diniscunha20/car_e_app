@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Carro } from "../assets/Carro";
+import { Carro } from "../assets/Props";
 import { useParams } from 'react-router-dom';
 
 
@@ -58,7 +58,7 @@ const AppointementForms = () =>  {
           <input
             type="text"
             placeholder="XX/XX/XXXX"
-            className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300"
+            className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300 text-black"
           />
         </div>
 
@@ -67,32 +67,32 @@ const AppointementForms = () =>  {
           <input
             type="text"
             placeholder="XX:XX"
-            className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300"
+            className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300 text-black"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700">Carro</label>
-          <select className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300">
+          <select className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300 text-black">
             <option>Selecione o veículo ...</option>
           </select>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700">Problema</label>
-          <select className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300">
+          <select className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300 text-black">
             <option>Selecione o que mais se adequa...</option>
           </select>
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-800">
+          <label className="block text-sm font-semibold text-gray-700">
             Descreva melhor o problema (opcional)
           </label>
           <textarea
             rows={3}
             placeholder="Escreva aqui"
-            className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300"
+            className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300 text-black"
           />
         </div>
 

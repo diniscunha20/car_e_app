@@ -1,6 +1,7 @@
 import React from 'react';
 import AppointementForms from './AppointementForms';
 import { useState,useRef } from 'react';
+import { Oficina } from '../assets/Props';
 
 
 interface BottomPopupProps {
@@ -9,10 +10,19 @@ interface BottomPopupProps {
   content: string;
 }
 
-const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content }) => {
+const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content}) => {
   if (!visible) return null;
   
   const [showModal, setShowModal] = useState(false);
+  
+  // Parse the string content back into an Oficina object
+  let oficina: Oficina | null = null;
+  try {
+    oficina = JSON.parse(content) as Oficina;
+    console.log("Oficina:",oficina)
+  } catch (e) {
+    console.error("Error parsing oficina content", e);
+  }
 
   return (
     <div
@@ -26,7 +36,7 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content }
                 <div className='h-7/10 w-full'>
                     <div className='h-3/20 mt-4 rounded-3xl bg-white flex flex-row '>
                         <div className='w-6/10 text-black flex items-center justify-center'>
-                            <h1 className='font-bold'>Oficina besta dos games</h1>
+                            <h1 className='font-bold'>{oficina?.nome}</h1>
                         </div>
 
                         <div className='w-4/10 bg-orange-300 rounded-r-3xl items-center flex justify-center'>
@@ -41,21 +51,21 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content }
                     </div>
 
                     <div className='h-14/20 mt-4 flex flex-row '>
-                        <div className='flex-col'>
+                        <div className='flex-col w-1/2'>
                             <div className='h-5/10'>
-                                <h1 className='text-white text-2xl font-bold'>Serviços:</h1>
+                                <h1 className='text-white text-2xl font-bold'>Serviços:{oficina?.servicos}</h1>
                             </div>
 
                             <div className='h-5/10 flex-col'>
-                                <h1 className='text-white text-2xl font-bold'>Horários:</h1>
+                                <h1 className='text-white text-2xl font-bold'>Horários:{oficina?.horario}</h1>
                                 <h1 className='text-white text-xl font-medium'>8h30-20h00</h1>
                             </div>
 
                         </div>
 
-                        <div className='h-full flex justify-end'>
+                        <div className='h-full flex justify-end w-1/2'>
                             <img
-                                src="/images/Oficina.jpg"
+                                src={oficina?.imagem_url}
                                 className="w-9/10 h-9/10 border-2 border-white object-cover rounded-xl left-10"
                             />
                             

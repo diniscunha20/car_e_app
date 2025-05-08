@@ -1,6 +1,6 @@
 import React from 'react';
 import "../assets/css/CarCard.css"
-import { Carro } from '../assets/Carro';
+import { Carro } from '../assets/Props';
 
 
 
@@ -15,7 +15,7 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
         {/* Topo: texto e imagem lado a lado */}
         <div className="h-15 flex flex-row items-center justify-between px-2 mb-3 mt-2">
           {/* Texto à esquerda */}
-          <div className="flex flex-row text-left z-2">
+          <div className="flex flex-row text-left z-10">
             <h2 className="card-title font-thin text-3xl">
               {carro.marca}
             </h2>
@@ -25,7 +25,7 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
           </div>
   
           {/* Imagem à direita */}
-          <div className="h-29 flex-shrink-0 mt-15 z-10 -ml-10">
+          <div className="h-29 flex-shrink-0 mt-15 z-20 -ml-10">
             <img
               src={carro.imagem_url}
               alt={`${carro.marca} ${carro.modelo}`}
