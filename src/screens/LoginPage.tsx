@@ -23,6 +23,14 @@ function LoginPage() {
 
   return (
     <div className="h-screen flex flex-col items-center justify-center relative">
+
+      <button
+        onClick={() => window.history.back()}
+        className="absolute top-1 left-1 text-black hover:underline ml-6 mt-4"
+      >
+        &lt;
+      </button>
+
       {/* Títulos */}
       <div className="absolute top-1/5 transform text-center">
         <h1 className="text-2xl font-light text-black">Welcome to</h1>
