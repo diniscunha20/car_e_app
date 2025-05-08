@@ -4,7 +4,7 @@ import carrosData from '../assets/carros.json';
 import NavBar from '../components/NavBar';
 import "../assets/css/CarCard.css"
 import EventForms from '../components/EventForms';
-import { Carro } from '../assets/Carro';
+import { Carro } from '../assets/Props';
 
 
 
@@ -139,7 +139,7 @@ const CarDetails: React.FC = () => {
                     </h1>
 
                     <button
-                      className="-ml-5 px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
+                      className="btn border-none -ml-5 px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
                       style={{ backgroundColor: brightColor, color: textColor  }}
                       onClick={() => navigate("/map")}
                     >

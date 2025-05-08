@@ -1,0 +1,38 @@
+{
+    "oficinas": [
+      {
+        "nome": "Oficina AutoTech",
+        "imagem": "/images/Oficina.jpg",
+        "servicos": ["Troca de óleo", "Alinhamento", "Revisão geral", "Freios"],
+        "horario": "Seg a Sex: 08:00 - 18:00, Sáb: 08:00 - 12:00",
+        "datas_disponiveis": ["2025-05-10", "2025-05-11", "2025-05-13", "2025-05-15", "2025-05-17"],
+        "localizacao": {
+          "lat": 51.5074,
+          "lng": -0.1278
+        }
+      },
+      {
+        "nome": "Mecânica Rápida do Zé",
+        "imagem": "/images/Oficina2.jpeg",
+        "servicos": ["Troca de pneus", "Balanceamento", "Suspensão"],
+        "horario": "Seg a Sáb: 07:00 - 17:00",
+        "datas_disponiveis": ["2025-05-09", "2025-05-12", "2025-05-14", "2025-05-16", "2025-05-18"],
+        "localizacao": {
+          "lat": 53.4808,
+          "lng": -2.2426
+        }
+      },
+      {
+        "nome": "Centro Automotivo Ideal",
+        "imagem": "/images/Oficina3.jpeg",
+        "servicos": ["Injeção eletrônica", "Escapamento", "Ar condicionado", "Diagnóstico eletrônico"],
+        "horario": "Seg a Sex: 09:00 - 19:00",
+        "datas_disponiveis": ["2025-05-08", "2025-05-10", "2025-05-13", "2025-05-15", "2025-05-20"],
+        "localizacao": {
+          "lat": 55.9533,
+          "lng": -3.1883
+        }
+      }
+    ]
+  }
+  

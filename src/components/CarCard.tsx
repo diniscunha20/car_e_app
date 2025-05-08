@@ -1,6 +1,6 @@
 import React from 'react';
 import "../assets/css/CarCard.css"
-import { Carro } from '../assets/Carro';
+import { Carro } from '../assets/Props';
 
 
 

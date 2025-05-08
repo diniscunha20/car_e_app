@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Carro } from "../assets/Carro";
+import { Carro } from "../assets/Props";
 import { useParams } from 'react-router-dom';
 
 

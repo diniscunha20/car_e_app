@@ -1,6 +1,6 @@
 // MapComponent.tsx
 import { MapContainer, TileLayer, Marker,Popup, useMap } from 'react-leaflet';
-import { useState,useRef } from 'react';
+import { useState,useRef,useEffect } from 'react';
 import L, { LatLngExpression } from 'leaflet';
 import "../assets/css/Map.css";
 import "../App.css";
@@ -8,39 +8,59 @@ import AutoShopPopUp from './AutoShopPopUp';
 import MapController from './MapController';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Oficina } from '../assets/Props';
 
 
 const MapComponent = () => {
-  const position: [number, number] = [51.505, -0.09];
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [popupContent, setPopupContent] = useState("");
-  const markers = [
-	{ name: "Oficina Besta dos Games", position: [51.505, -0.09] },
-	{ name: "Oficina Go Go PowerRangers", position: [52, -1] },
-	{ name: "Oficina Fico aqui imaginando o que agente pode fazer", position: [52.52, 1] },
-  ];
+const position: [number, number] = [51.505, -0.09];
+const [popupVisible, setPopupVisible] = useState(false);
+const [popupContent, setPopupContent] = useState("");
 
-  const handleMarkerClick = () => {
-    setPopupContent("You clicked the marker at London!");
-    setPopupVisible(true);
+const [oficinas, setOficinas] = useState<Oficina[]>([]);
+
+useEffect(() => {
+	const stored = localStorage.getItem('oficinas');
+	const parsed: Oficina[] = stored ? JSON.parse(stored) : [];
+	setOficinas(parsed);
+  }, []);
+
+
+const markers = oficinas?.map((oficina: any) => ({
+  name: oficina.nome,
+  position: [oficina.localizacao.lat, oficina.localizacao.lng]
+})) ?? [];
+
+
+const handleMarkerClick = (event: L.LeafletMouseEvent, marker: typeof markers[0]) => {
+	const oficina = oficinas.find((oficina) => oficina.nome === marker.name);
+	
+	if (oficina) {
+	  const content = `${JSON.stringify(oficina)}
+	  `;
+	  setPopupContent(content);
+	} else {
+	  setPopupContent("Oficina não encontrada.");
+	}
+  
+	setPopupVisible(true);
   };
 
-  const handleClosePopup = () => {
-    setPopupVisible(false);
-  };
+const handleClosePopup = () => {
+	setPopupVisible(false);
+};
 
-	const [searchQuery, setSearchQuery] = useState("");
+const [searchQuery, setSearchQuery] = useState("");
 
-	const mapRef = useRef<L.Map | null>(null);
+const mapRef = useRef<L.Map | null>(null);
 
-	const handleSearchSelect = (marker: typeof markers[0]) => {
+const handleSearchSelect = (marker: typeof markers[0]) => {
 	setPopupContent(`You selected ${marker.name}`);
 	setPopupVisible(true);
 
 	if (mapRef.current) {
 		mapRef.current.setView(marker.position as LatLngExpression, 13);
 	}
-	};
+};
 
   return (
     <div className='relative'>
@@ -68,7 +88,7 @@ const MapComponent = () => {
 					<li
 					key={idx}
 					onClick={() => {
-						handleSearchSelect(marker);
+						handleSearchSelect(marker.name);
 						setSearchQuery(""); 
 					}}
 					className="p-2 cursor-pointer hover:bg-orange-100 text-white"
@@ -104,12 +124,14 @@ const MapComponent = () => {
 			key={idx}
 			position={marker.position as LatLngExpression}
 			eventHandlers={{
-				click: () => handleSearchSelect(marker),
+				click: (e) => {
+				console.log('Clicked marker:', marker);  
+				handleMarkerClick(e,marker);
+				},
 			}}
 			/>
 		))}
 
-        <Marker position={position} eventHandlers={{ click: handleMarkerClick }} />
       </MapContainer>
 
       <AutoShopPopUp
