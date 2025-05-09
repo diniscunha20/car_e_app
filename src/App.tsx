@@ -6,6 +6,7 @@ import User from './screens/User'
 import MapPage from './screens/MapPage'
 import RegisterPage from './screens/RegisterPage'
 import CarDetails from './screens/CarDetails'
+import MarcacoesPage from "./screens/MarcacoesPage.tsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/perfil" element={<User />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/car-details/:matricula" element={<CarDetails />} />
+        <Route path="/marcacoes" element={<MarcacoesPage />}></Route>
       </Routes>
     </Router>
   );

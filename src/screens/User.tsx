@@ -2,10 +2,12 @@ import { useState } from 'react';
 import Avatar from '../components/Avatar';
 import NavBar from '../components/NavBar';
 import UserCard from '../components/UserCard';
-import ReportProblemModal from '../components/ReportProblemModal'; // ajusta o path se necessário
+import ReportProblemModal from '../components/ReportProblemModal';
+import {useNavigate} from "react-router-dom"; // ajusta o path se necessário
 
 function User() {
   const [showModal, setShowModal] = useState(false);
+  const Navigate = useNavigate();
 
   return (
     <>
@@ -25,7 +27,10 @@ function User() {
 
       <div className="flex flex-col items-center justify-center mt-15">
         <UserCard name='Informações da Conta' />
-        <UserCard name='Histórico de Marcações' />
+        <UserCard
+          name='Histórico de Marcações'
+          onClick={() => Navigate("/marcacoes")}
+        />
         <UserCard 
           name='Comunicar problema' 
           onClick={() => setShowModal(true)} // ✅ abre o modal
