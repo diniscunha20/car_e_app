@@ -91,7 +91,7 @@ const handleSearchSelect = (marker: typeof markers[0]) => {
 						handleSearchSelect(marker.name);
 						setSearchQuery(""); 
 					}}
-					className="p-2 cursor-pointer hover:bg-orange-100 text-white"
+					className="p-2 cursor-pointer hover:text-black hover:bg-orange-100 text-white"
 					>
 					{marker.name}
 					</li>

@@ -30,6 +30,13 @@ const CarDetails: React.FC = () => {
     console.log("Car from localStorage:", carro);
   }
 
+  const sortedEventos = Object.entries(carro.eventos).sort(([, dateA], [, dateB]) =>
+    new Date(dateA).getTime() - new Date(dateB).getTime()
+  );
+  
+
+  
+
 
 
   const adjustColorBrightness = (color: string): { baseColor: string; brightColor: string; textColor: string } => {
@@ -123,64 +130,69 @@ const CarDetails: React.FC = () => {
 
 
             <div className='h-2/11'>
-            
-                <h2 className="text-xl font-bold mb-2 ml-3" style={{color: textColor  }}>Proximo evento </h2>
+              <h2 className="text-xl font-bold mb-2 ml-3" style={{ color: textColor }}>Próximo evento</h2>
 
-                {Object.entries(carro.eventos).slice(0, 1).map(([evento, data], index) => (
-                  <div
-                    className={`h-3/4 w-[95%] flex items-center rounded-r-3xl`}
-                    key={evento}
-                    style={{ backgroundColor: baseColor, color: textColor }}
+              {sortedEventos.slice(0, 1).map(([evento, data]) => (
+                <div
+                  className="h-3/4 w-[95%] flex items-center rounded-r-3xl"
+                  key={evento}
+                  style={{ backgroundColor: baseColor, color: textColor }}
+                >
+                  <h1 className="ml-3 w-[70%]">
+                    <strong>{evento}:</strong> {data}
+                  </h1>
+
+                  <button
+                    className="btn border-none px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
+                    style={{ backgroundColor: brightColor, color: textColor }}
+                    onClick={() => navigate("/map")}
                   >
-
-                    <h1 className="ml-3 w-[70%]">
-                      <strong>{evento}:</strong> {data}
-                    </h1>
-
-                    <button
-                      className="btn border-none -ml-5 px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
-                      style={{ backgroundColor: brightColor, color: textColor  }}
-                      onClick={() => navigate("/map")}
-                    >
-                      Marcar
-                    </button>
-
-                  </div>
-                ))}
-
+                    Marcar
+                  </button>
+                </div>
+              ))}
             </div>
 
-            <h2 className="text-xl font-bold  ml-3 mt-10 border-t-4 py-2" style={{borderColor: textColor,color: textColor  }}>Outros </h2>
-            <div className='h-[55%] overflow-y-auto'>
+            <div className='flex flex-row  border-t-4 mt-10' style={{ borderColor: textColor, color: textColor }}>
+              
+              <div className='w-1/2'>
+              <h2 className="text-xl font-bold ml-3 py-2" >Outros</h2>
+              </div>
 
-                {Object.entries(carro.eventos).slice(1).map(([evento, data], index) => (
-                  <div
-                    className={`h-1/4 mt-4 w-[95%] flex items-center ${index % 2 === 0 ? 'rounded-l-3xl ml-5' : 'rounded-r-3xl'}`}
-                    key={evento}
-                    style={{ backgroundColor: baseColor }}
-                    onClick={() => {
-                      setShowModalEventInfo(true)
-                      selectedDataUpdate(data)
-                      selectedDescUpdate(evento)
-                    }}
-                  >
-                    <h1 className={` ${index % 2 === 0 ? 'ml-5 w-[70%]' : 'ml-10 w-[55%] '}`}>
-                      <strong>{evento}:</strong> {data}
-                    </h1>
-
-                  </div>
-                ))}
+              <div className='w-1/2 justify-end flex'>
+                <button
+                  onClick={() => setShowModal(true)}
+                  className=" text-3xl font-bold rounded-full size-6 shadow-lg mr-10 mt-3"
+                  style={{ color: baseColor, background: textColor }}
+                >
+                  <h1 className='font-bold -mt-2'>+</h1>
+                </button>
+              </div>
             </div>
+
+            <div className='h-[50%] overflow-y-auto'>
+              {sortedEventos.slice(1).map(([evento, data], index) => (
+                <div
+                  className={`h-1/4 mt-4 w-[95%] flex items-center ${index % 2 === 0 ? 'rounded-l-3xl ml-5' : 'rounded-r-3xl'}`}
+                  key={evento}
+                  style={{ backgroundColor: baseColor }}
+                  onClick={() => {
+                    setShowModalEventInfo(true);
+                    selectedDataUpdate(data);
+                    selectedDescUpdate(evento);
+                  }}
+                >
+                  <h1 className={`${index % 2 === 0 ? 'ml-5 w-[70%]' : 'ml-10 w-[55%]'}`}>
+                    <strong>{evento}:</strong> {data}
+                  </h1>
+                </div>
+              ))}
+            </div>
+
 
             <div className='h-[5%]'>
             <div className='h-[5%] items-center flex justify-end'>
-              <button
-                onClick={() => setShowModal(true)}
-                className=" text-3xl font-bold rounded-full size-6 shadow-lg mr-15 mt-8"
-                style={{ color: baseColor, background: textColor }}
-              >
-                <h1 className='font-bold -mt-2'>+</h1>
-              </button>
+              
             </div>
 
             </div>

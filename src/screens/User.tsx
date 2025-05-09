@@ -12,8 +12,7 @@ function User() {
   return (
     <>
       <button 
-        onClick={() => window.history.back()} 
-        className="text-black hover:underline ml-6 mt-4"
+        className=""
       >
         &lt;
       </button>

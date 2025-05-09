@@ -50,22 +50,28 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content})
                         </div>
                     </div>
 
-                    <div className='h-14/20 mt-4 flex flex-row '>
+                    <div className='h-14/20 mt-2 flex flex-row '>
                         <div className='flex-col w-1/2'>
-                            <div className='h-5/10'>
-                                <h1 className='text-white text-2xl font-bold'>Serviços:{oficina?.servicos}</h1>
+                            <div className='h-5/10 flex-col'>
+                                <h1 className='text-white text-2xl font-bold'>Serviços:</h1>
+                                {oficina?.servicos?.map((servico, index) => (
+                                  <h2 key={index} className="text-white ml-10">
+                                    {servico}
+                                  </h2>
+                                ))}
+
                             </div>
 
-                            <div className='h-5/10 flex-col'>
-                                <h1 className='text-white text-2xl font-bold'>Horários:{oficina?.horario}</h1>
-                                <h1 className='text-white text-xl font-medium'>8h30-20h00</h1>
+                            <div className='h-4/10 flex-col mt-13'>
+                                <h1 className='text-white text-2xl font-bold'>Horários:</h1>
+                                <h2 className='text-white ml-10'>{oficina?.horario}</h2>
                             </div>
 
                         </div>
 
-                        <div className='h-full flex justify-end w-1/2'>
+                        <div className='h-full flex justify-end w-1/2 mt-10'>
                             <img
-                                src={oficina?.imagem_url}
+                                src={oficina?.imagem}
                                 className="w-9/10 h-9/10 border-2 border-white object-cover rounded-xl left-10"
                             />
                             
@@ -74,7 +80,7 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content})
                 </div>
                 <button 
                 onClick={() => setShowModal(true)}
-                className="ml-5 -mt-7 bg-white text-black font-bold px-2 py-3 rounded-full shadow-lg w-9/10">Fazer marcação</button>
+                className="ml-5 mt-15 bg-white text-black font-bold px-2 py-3 rounded-full shadow-lg w-9/10">Fazer marcação</button>
             </div>
         </div>
         {showModal && (
