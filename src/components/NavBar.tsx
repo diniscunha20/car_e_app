@@ -7,7 +7,7 @@ function NavBar() {
   const currentPath = location.pathname;
 
   return (
-    <div className="bg-black dock dock-lg shadow-2xl p-0 h-1/13 z-100">
+    <div className="fixed bottom-0 left-0 bg-black dock dock-lg shadow-2xl p-0 h-1/13 z-50">
          
          <div className={`w-1/3 rounded-none m-0 border-r ${currentPath === '/perfil' ? 'border-b-3' : ''}`}
         onClick={() => navigate('/perfil')}>
