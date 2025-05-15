@@ -11,3 +11,19 @@ Adicionar/modificar foto de perfil
 Pesquisa por regiao e Oficinas
 
 MAIS BONITO QUE O DA MARIANA MARQUES
+
+Ver localizaçao atual no mapa
+
+editar informações do carro
+
+cruzes nos Modais
+
+botao de submeter muda de cor depois de estarem prenchidos os campos
+
+mudar botão do lixo
+
+fotos em novos carros adicionados
+
+dados serem unicos para cada perfil
+
+nome da oficina muda entre mapa e marcação
