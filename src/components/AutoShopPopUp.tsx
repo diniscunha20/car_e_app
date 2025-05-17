@@ -91,7 +91,7 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content})
         <div
           onClick={(e) => e.stopPropagation()}
         >
-          <AppointementForms></AppointementForms>
+          <AppointementForms setShowModal={setShowModal} content={oficina?.nome != null ? oficina?.nome : ""}></AppointementForms>
         </div>
       </div>
     )}

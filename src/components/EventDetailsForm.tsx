@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import { Carro } from "../assets/Props";
 import { useParams, useNavigate } from 'react-router-dom';
 
-const EventDetailsForm: React.FC<{ data: string, desc: string }> = ({ data, desc }) => {
+interface Props {
+  data: string;
+  desc: string;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const EventDetailsForm: React.FC<Props> = ({ data, desc, setShowModal }) => {
   const [description, setDescription] = useState(desc);
   const [date, setDate] = useState(data);
 
   const { matricula } = useParams<{ matricula: string }>();
-  const navigate = useNavigate(); // <--- Add this line
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,6 +40,7 @@ const EventDetailsForm: React.FC<{ data: string, desc: string }> = ({ data, desc
 
     localStorage.setItem('carros', JSON.stringify(updatedCarros));
     alert('Evento editado com sucesso!');
+    setShowModal(false);
   };
 
   const handleRemove = (e: React.FormEvent) => {
@@ -58,6 +65,7 @@ const EventDetailsForm: React.FC<{ data: string, desc: string }> = ({ data, desc
 
     localStorage.setItem('carros', JSON.stringify(updatedCarros));
     alert('Evento removido com sucesso!');
+    setShowModal(false);
   };
 
   return (

@@ -1,10 +1,12 @@
 import React,{ useState }  from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import NavBar from '../components/NavBar';
 import "../assets/css/CarCard.css"
 import EventForms from '../components/EventForms';
 import EventDetailsForm from "../components/EventDetailsForm.tsx";
 import { Carro } from '../assets/Props';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 const CarDetails: React.FC = () => {
@@ -33,10 +35,6 @@ const CarDetails: React.FC = () => {
     new Date(dateA).getTime() - new Date(dateB).getTime()
   );
   
-
-  
-
-
 
   const adjustColorBrightness = (color: string): { baseColor: string; brightColor: string; textColor: string } => {
     const [r, g, b] = color.match(/\d+/g)?.map(Number) ?? [0, 0, 0];
@@ -72,8 +70,6 @@ const CarDetails: React.FC = () => {
   const carColor = `rgb(${carro.cor_rgb.join(', ')})`;
   const { baseColor, brightColor, textColor } = adjustColorBrightness(carColor);
 
-
-
   return (
     
     <div className="text-black h-full w-full "
@@ -92,12 +88,12 @@ const CarDetails: React.FC = () => {
             
           <div className='relative h-1/4 rounded-b-4xl'
             style={{ backgroundColor: 'rgb(250, 234, 189)' }}>
-              <button 
-                onClick={() => window.history.back()} 
-                className="text-black hover:underline ml-3 mt-4 absolute z-40"
-              >
-                &lt;
-              </button>
+            <button
+              onClick={() => window.history.back()}
+              className="text-black hover:underline ml-3 mt-4 absolute z-40"
+            >
+              <strong>&lt;</strong>
+            </button>
 
             <div className="h-full ml-2 flex flex-row">
 
@@ -278,9 +274,9 @@ const CarDetails: React.FC = () => {
             onClick={() => setShowModal(false)}
             className="text-black hover:underline ml-3 mt-4"
           >
-            &lt;
+            <FontAwesomeIcon icon={faTimes} className="text-xl" />
           </button>
-          <EventForms></EventForms>
+          <EventForms setShowModal={setShowModal}></EventForms>
         </div>
       </div>
     )}
@@ -298,9 +294,9 @@ const CarDetails: React.FC = () => {
             onClick={() => setShowModalEventInfo(false)}
             className="text-black hover:underline ml-3 mt-4"
           >
-            &lt;
+            <FontAwesomeIcon icon={faTimes} className="text-xl" />
           </button>
-          <EventDetailsForm data={selectedData} desc={selectedDesc} ></EventDetailsForm>
+          <EventDetailsForm setShowModal={setShowModalEventInfo} data={selectedData} desc={selectedDesc} ></EventDetailsForm>
         </div>
       </div>
     )}

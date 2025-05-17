@@ -1,23 +1,34 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Carro } from "../assets/Props";
+import {useNavigate} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
-const AppointementForms = () =>  {
+interface Props {
+  content: string;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AppointementForms: React.FC<Props> = ({ content, setShowModal }) => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [carro, setCarro] = useState("");
   const [prob, setProb] = useState("");
 
+  const navigate = useNavigate();
+
+  const formValid = date && hour && carro && prob;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const stored = localStorage.getItem('carros');
+    const stored = localStorage.getItem("carros");
     if (!stored) return;
 
-    const marcacoesStored = localStorage.getItem('marcacoes');
+    const marcacoesStored = localStorage.getItem("marcacoes");
     const marcacoes = marcacoesStored ? JSON.parse(marcacoesStored) : {};
 
-    // Add or update a "marcacao" entry for this car and date
     if (!marcacoes[carro]) {
       marcacoes[carro] = {};
     }
@@ -29,21 +40,23 @@ const AppointementForms = () =>  {
       description,
     };
 
-    console.log("Marcações atualizadas:", marcacoes);
-
-    localStorage.setItem('marcacoes', JSON.stringify(marcacoes));
-    alert('Marcação adicionada com sucesso!');
+    localStorage.setItem("marcacoes", JSON.stringify(marcacoes));
+    alert("Marcação adicionada com sucesso!");
+    setShowModal(false);
+    navigate("/");
   };
-
 
   return (
     <div className="max-w-md mx-auto bg-[#fdfadf] rounded-3xl border-4 border-gray-800 p-6 shadow-md">
+      <button
+        onClick={() => setShowModal(false)}
+        className="text-black hover:underline ml-3 mt-4"
+      >
+        <FontAwesomeIcon icon={faTimes} className="text-xl" />
+      </button>
+
       <div className="flex justify-between items-start">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800 leading-tight">
-            Oficina<br />besta dos<br />games
-          </h1>
-        </div>
+        <h1 className="text-3xl font-bold text-gray-800 leading-tight">{content}</h1>
         <img
           src="https://via.placeholder.com/100x70.png?text=Oficina"
           alt="Oficina"
@@ -80,15 +93,17 @@ const AppointementForms = () =>  {
             onChange={(e) => setCarro(e.target.value)}
             required
           >
-            <option className="text-gray-700" value="default" disabled>Selecione o veículo ...</option>
+            <option className="text-gray-700" value="default" disabled>
+              Selecione o veículo ...
+            </option>
             {(() => {
-              const stored = localStorage.getItem('carros');
+              const stored = localStorage.getItem("carros");
               if (!stored) return null;
 
               const carros = JSON.parse(stored);
               return carros.map((carro: Carro) => (
                 <option key={carro.matricula} value={carro.matricula} className="text-gray-700">
-                  {carro.marca + ' ' + carro.modelo}
+                  {carro.marca + " " + carro.modelo}
                 </option>
               ));
             })()}
@@ -103,17 +118,19 @@ const AppointementForms = () =>  {
             onChange={(e) => setProb(e.target.value)}
             required
           >
-            <option  className="text-gray-700" value="default" disabled>Selecione o que mais se adequa...</option>
+            <option className="text-gray-700" value="default" disabled>
+              Selecione o que mais se adequa...
+            </option>
             {(() => {
-              const stored = localStorage.getItem('carros');
+              const stored = localStorage.getItem("carros");
               if (!stored || !carro) return null;
 
               const carros = JSON.parse(stored);
-              const selectedCarro = carros.find((car: Carro) => car.matricula == carro);
+              const selectedCarro = carros.find((car: Carro) => car.matricula === carro);
 
               if (!selectedCarro || !selectedCarro.eventos) return null;
 
-              return Object.entries(selectedCarro.eventos).map(([desc, date]) => (
+              return Object.entries(selectedCarro.eventos).map(([desc]) => (
                 <option key={desc} value={desc} className="text-gray-700">
                   {desc}
                 </option>
@@ -136,7 +153,12 @@ const AppointementForms = () =>  {
 
         <button
           type="submit"
-          className="w-full bg-[#e39073] hover:bg-[#d87b5d] text-white font-bold py-2 px-4 rounded-xl mt-4"
+          disabled={!formValid}
+          className={`w-full font-bold py-2 px-4 rounded-xl mt-4 transition-colors duration-300 ${
+            formValid
+              ? "bg-[#e39073] hover:bg-[#d87b5d] text-white"
+              : "bg-gray-400 text-white cursor-not-allowed"
+          }`}
         >
           Concluir
         </button>

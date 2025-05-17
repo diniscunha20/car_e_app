@@ -2,7 +2,7 @@ Poder dar review e ver comentarios
 
 Modais consistentes
 
-Fechar modal depois de concluido
+
 
 Adicionar/modificar foto de perfil
 
@@ -10,9 +10,9 @@ MAIS BONITO QUE O DA MARIANA MARQUES
 
 editar informações do carro
 
-cruzes nos Modais
 
-botao de submeter muda de cor depois de estarem prenchidos os campos
+
+
 
 mudar botão do lixo
 
@@ -20,4 +20,3 @@ fotos em novos carros adicionados
 
 dados serem unicos para cada perfil
 
-nome da oficina muda entre mapa e marcação

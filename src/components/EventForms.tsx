@@ -1,40 +1,39 @@
 import { useState } from "react";
 import { Carro } from "../assets/Props";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
+interface Props {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const EventForms = () =>  {
+const EventForms: React.FC<Props> = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const {matricula} = useParams<{ matricula: string }>();
+  const { matricula } = useParams<{ matricula: string }>();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-  
-    const stored = localStorage.getItem('carros');
+
+    const stored = localStorage.getItem("carros");
     if (!stored) return;
 
     const carros = JSON.parse(stored);
     const updatedCarros = carros.map((carro: Carro) => {
-        
-        if (carro.matricula === matricula) {
-  
-            const updatedCarro = {
-              ...carro,
-              eventos: {
-                ...carro.eventos,
-                [description]: date,
-              },
-            };
-      
-            return updatedCarro;
-          }
-        return carro;
+      if (carro.matricula === matricula) {
+        return {
+          ...carro,
+          eventos: {
+            ...carro.eventos,
+            [description]: date,
+          },
+        };
+      }
+      return carro;
     });
-  
-    console.log(updatedCarros)
-    localStorage.setItem('carros', JSON.stringify(updatedCarros));
-    alert('Evento adicionado com sucesso!');
+
+    localStorage.setItem("carros", JSON.stringify(updatedCarros));
+    alert("Evento adicionado com sucesso!");
+    setShowModal(false);
   };
 
   return (
