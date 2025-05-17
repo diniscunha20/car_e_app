@@ -1,6 +1,6 @@
 import React from 'react';
 import AppointementForms from './AppointementForms';
-import { useState,useRef } from 'react';
+import { useState } from 'react';
 import { Oficina } from '../assets/Props';
 
 
@@ -11,9 +11,9 @@ interface BottomPopupProps {
 }
 
 const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content}) => {
-  if (!visible) return null;
-  
   const [showModal, setShowModal] = useState(false);
+
+  if (!visible) return null;
   
   // Parse the string content back into an Oficina object
   let oficina: Oficina | null = null;
@@ -71,7 +71,7 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content})
 
                         <div className='h-full flex justify-end w-1/2 mt-10'>
                             <img
-                                src={oficina?.imagem}
+                                src={oficina?.imagem_url}
                                 className="w-9/10 h-9/10 border-2 border-white object-cover rounded-xl left-10"
                             />
                             

@@ -15,7 +15,7 @@ const MapComponent = () => {
 	const [popupVisible, setPopupVisible] = useState(false);
 	const [popupContent, setPopupContent] = useState("");
 	const [oficinas, setOficinas] = useState<Oficina[]>([]);
-	const [userLocation, setUserLocation] = useState<LatLngExpression | null>(defaultPosition);
+	const [userLocation, ] = useState<LatLngExpression | null>(defaultPosition);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [searchResults, setSearchResults] = useState<{ name: string; position: [number, number] }[]>([]);
 
@@ -35,12 +35,18 @@ const MapComponent = () => {
 	};
 
 	const geocodeLocation = async (location: string): Promise<[number, number] | null> => {
-		const response = await fetch(
-			`https://corsproxy.io/https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`
-		);
-		const data = await response.json();
-		if (data && data.length > 0) {
-			return [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+		try {
+			const apiKey = "pk.57561e0a3d9fbf9135110343ae8c46a1"; // Replace with your key
+			const response = await fetch(
+				`https://us1.locationiq.com/v1/search.php?key=${apiKey}&q=${encodeURIComponent(location)}&format=json`
+			);
+			const data = await response.json();
+
+			if (data && data.length > 0) {
+				return [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+			}
+		} catch (error) {
+			console.error("Geocoding error:", error);
 		}
 		return null;
 	};
@@ -64,7 +70,7 @@ const MapComponent = () => {
 		}
 	};
 
-	const handleMarkerClick = (event: L.LeafletMouseEvent, marker: typeof markers[0]) => {
+	const handleMarkerClick = (marker: typeof markers[0]) => {
 		const oficina = oficinas.find((oficina) => oficina.nome === marker.name);
 
 		if (oficina) {
@@ -91,21 +97,35 @@ const MapComponent = () => {
 		}
 
 		const coords = await geocodeLocation(query);
+
 		if (!coords) {
 			alert("Location not found.");
+			setSearchResults([]);
 			return;
 		}
 
 		const searchPoint = L.latLng(coords[0], coords[1]);
-		centerMapWithOffset(searchPoint);
 
-		const filteredMarkers = markers.filter((marker) =>
-			marker.name.toLowerCase().includes(query.toLowerCase()) ||
-			L.latLng(marker.position[0], marker.position[1]).distanceTo(searchPoint) <= 10000
-		);
+		// Filter by name OR by proximity (within 10km)
+		const filteredMarkers = markers.filter((marker) => {
+			const nameMatches = marker.name.toLowerCase().includes(query.toLowerCase());
 
+			const markerLatLng = L.latLng(marker.position[0], marker.position[1]);
+			const distance = markerLatLng.distanceTo(searchPoint);
+			const nearby = distance <= 10000;
+
+			return nameMatches || nearby;
+		});
+
+		if (mapRef.current) {
+			mapRef.current.setView(searchPoint, 13, { animate: true });
+		}
+
+		console.log("Filtered markers:", filteredMarkers);
 		setSearchResults(filteredMarkers);
 	};
+
+
 
 	return (
 		<div className='relative'>
@@ -159,8 +179,7 @@ const MapComponent = () => {
 				)}
 
 				<MarkerClusterGroup>
-					{markers
-						.filter(marker => marker.name.toLowerCase().includes(searchQuery.toLowerCase()))
+					{(searchResults.length > 0 ? searchResults : markers)
 						.map((marker, idx) => (
 							<Marker
 								key={idx}
@@ -172,7 +191,7 @@ const MapComponent = () => {
 									popupAnchor: [0, -32],
 								})}
 								eventHandlers={{
-									click: (e) => handleMarkerClick(e, marker),
+									click: () => handleMarkerClick(marker),
 								}}
 							/>
 						))}

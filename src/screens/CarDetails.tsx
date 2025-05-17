@@ -1,6 +1,5 @@
 import React,{ useState }  from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
-import carrosData from '../assets/carros.json';
 import NavBar from '../components/NavBar';
 import "../assets/css/CarCard.css"
 import EventForms from '../components/EventForms';
