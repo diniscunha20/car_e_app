@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Carro } from "../assets/Carro";
-import { useParams } from 'react-router-dom';
+import { Carro } from "../assets/Props";
+import { useParams, useNavigate } from 'react-router-dom';
 
-
-const EventDetailsForm: React.FC<{data: string , desc: string }> = ({data, desc}) =>  {
+const EventDetailsForm: React.FC<{ data: string, desc: string }> = ({ data, desc }) => {
   const [description, setDescription] = useState(desc);
   const [date, setDate] = useState(data);
 
-  const {matricula} = useParams<{ matricula: string }>();
+  const { matricula } = useParams<{ matricula: string }>();
+  const navigate = useNavigate(); // <--- Add this line
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,10 +18,8 @@ const EventDetailsForm: React.FC<{data: string , desc: string }> = ({data, desc}
     const carros = JSON.parse(stored);
     const updatedCarros = carros.map((carro: Carro) => {
       if (carro.matricula === matricula) {
-        // Create a copy of the eventos without the `desc` key
         const { [desc]: _, ...remainingEventos } = carro.eventos;
 
-        // Add the new event
         return {
           ...carro,
           eventos: {
@@ -45,31 +43,25 @@ const EventDetailsForm: React.FC<{data: string , desc: string }> = ({data, desc}
     if (!stored) return;
 
     const carros = JSON.parse(stored);
-
     const updatedCarros = carros.map((carro: Carro) => {
       if (carro.matricula === matricula) {
-        // Create a copy of the eventos without the `desc` key
-        const {[desc]: _, ...remainingEventos} = carro.eventos;
+        const { [desc]: _, ...remainingEventos } = carro.eventos;
 
-        // Add the new event
         return {
           ...carro,
-          eventos: {
-            ...remainingEventos
-          },
+          eventos: { ...remainingEventos },
         };
       }
 
-      return carro
+      return carro;
     });
 
     localStorage.setItem('carros', JSON.stringify(updatedCarros));
     alert('Evento removido com sucesso!');
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 p-4">
-
       <div>
         <label className="block text-sm font-medium text-gray-700">Descrição do problema</label>
         <input
@@ -108,8 +100,15 @@ const EventDetailsForm: React.FC<{data: string , desc: string }> = ({data, desc}
         >
           Remover
         </button>
-      </div>
 
+        <button
+          type="button"
+          onClick={() => navigate('/map')}
+          className="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700"
+        >
+          Marcar
+        </button>
+      </div>
     </form>
   );
 };

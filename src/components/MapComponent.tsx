@@ -118,7 +118,7 @@ const MapComponent = () => {
 		});
 
 		if (mapRef.current) {
-			mapRef.current.setView(searchPoint, 13, { animate: true });
+			mapRef.current.setView(searchPoint, 12, { animate: true });
 		}
 
 		console.log("Filtered markers:", filteredMarkers);

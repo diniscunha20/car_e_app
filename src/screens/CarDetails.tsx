@@ -136,6 +136,11 @@ const CarDetails: React.FC = () => {
                   className="h-3/4 w-[95%] flex items-center rounded-r-3xl"
                   key={evento}
                   style={{ backgroundColor: baseColor, color: textColor }}
+                  onClick={() => {
+                    setShowModalEventInfo(true);
+                    selectedDataUpdate(data);
+                    selectedDescUpdate(evento);
+                  }}
                 >
                   <h1 className="ml-3 w-[70%]">
                     <strong>{evento}:</strong> {data}
@@ -265,16 +270,16 @@ const CarDetails: React.FC = () => {
         className="fixed inset-0 bg-black/70 flex justify-center items-center z-20"
         onClick={() => setShowModal(false)}
       >
-        <button
-          onClick={() => setShowModalEventInfo(false)}
-          className="text-black hover:underline ml-3 mt-4"
-        >
-          &lt;
-        </button>
         <div
           className="h-[35%] bg-white p-6 rounded-2xl shadow-2xl w-96 ml-3 mr-3 z-30"
           onClick={(e) => e.stopPropagation()}
         >
+          <button
+            onClick={() => setShowModal(false)}
+            className="text-black hover:underline ml-3 mt-4"
+          >
+            &lt;
+          </button>
           <EventForms></EventForms>
         </div>
       </div>
