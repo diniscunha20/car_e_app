@@ -1,38 +1,192 @@
 {
-    "oficinas": [
-      {
-        "nome": "Oficina AutoTech",
-        "imagem": "/images/Oficina.jpg",
-        "servicos": ["Troca de óleo", "Alinhamento", "Revisão geral", "Freios"],
-        "horario": "Seg a Sex: 08:00 - 18:00, Sáb: 08:00 - 12:00",
-        "datas_disponiveis": ["2025-05-10", "2025-05-11", "2025-05-13", "2025-05-15", "2025-05-17"],
-        "localizacao": {
-          "lat": 51.5074,
-          "lng": -0.1278
-        }
-      },
-      {
-        "nome": "Mecânica Rápida do Zé",
-        "imagem": "/images/Oficina2.jpeg",
-        "servicos": ["Troca de pneus", "Balanceamento", "Suspensão"],
-        "horario": "Seg a Sáb: 07:00 - 17:00",
-        "datas_disponiveis": ["2025-05-09", "2025-05-12", "2025-05-14", "2025-05-16", "2025-05-18"],
-        "localizacao": {
-          "lat": 53.4808,
-          "lng": -2.2426
-        }
-      },
-      {
-        "nome": "Centro Automotivo Ideal",
-        "imagem": "/images/Oficina3.jpeg",
-        "servicos": ["Injeção eletrônica", "Escapamento", "Ar condicionado", "Diagnóstico eletrônico"],
-        "horario": "Seg a Sex: 09:00 - 19:00",
-        "datas_disponiveis": ["2025-05-08", "2025-05-10", "2025-05-13", "2025-05-15", "2025-05-20"],
-        "localizacao": {
-          "lat": 55.9533,
-          "lng": -3.1883
-        }
+  "oficinas": [
+    {
+      "nome": "Auto Vera Cruz",
+      "imagem": "/images/AutoVeraCruz.jpg",
+      "servicos": ["Revisão geral", "Diagnóstico eletrônico", "Troca de óleo"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-18", "2025-05-19", "2025-05-20"],
+      "localizacao": {
+        "lat": 40.64415,
+        "lng": -8.65086
       }
-    ]
-  }
-  
+    },
+    {
+      "nome": "Auto Várzea",
+      "imagem": "/images/AutoVarzea.jpg",
+      "servicos": ["Alinhamento", "Suspensão", "Freios"],
+      "horario": "Seg a Sáb: 08:00 - 17:00",
+      "datas_disponiveis": ["2025-05-18", "2025-05-20", "2025-05-22"],
+      "localizacao": {
+        "lat": 40.6741196,
+        "lng": -8.5573997
+      }
+    },
+    {
+      "nome": "Auto Reparadora de Raul & Lima",
+      "imagem": "/images/RaulLima.jpg",
+      "servicos": ["Troca de óleo", "Revisão geral", "Freios"],
+      "horario": "Seg a Sex: 08:30 - 18:30",
+      "datas_disponiveis": ["2025-05-19", "2025-05-21", "2025-05-23"],
+      "localizacao": {
+        "lat": 40.642778,
+        "lng": -8.623611
+      }
+    },
+    {
+      "nome": "Filipe Godinho",
+      "imagem": "/images/FilipeGodinho.jpg",
+      "servicos": ["Injeção eletrônica", "Diagnóstico eletrônico", "Ar condicionado"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-20", "2025-05-22", "2025-05-24"],
+      "localizacao": {
+        "lat": 40.667778,
+        "lng": -8.617222
+      }
+    },
+    {
+      "nome": "Armando Mota Reparações Auto",
+      "imagem": "/images/ArmandoMota.jpg",
+      "servicos": ["Suspensão", "Freios", "Troca de pneus"],
+      "horario": "Seg a Sáb: 08:00 - 17:00",
+      "datas_disponiveis": ["2025-05-18", "2025-05-20", "2025-05-22"],
+      "localizacao": {
+        "lat": 40.65412,
+        "lng": -8.61751
+      }
+    },
+    {
+      "nome": "Auto Reparadora Sá Eduardo Coelho Silva & Filho",
+      "imagem": "/images/SaEduardo.jpg",
+      "servicos": ["Revisão geral", "Diagnóstico eletrônico", "Troca de óleo"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-19", "2025-05-21", "2025-05-23"],
+      "localizacao": {
+        "lat": 40.646667,
+        "lng": -8.643056
+      }
+    },
+    {
+      "nome": "Vítor Guedes Lopes - Reparação de Automóveis",
+      "imagem": "/images/VitorGuedes.jpg",
+      "servicos": ["Alinhamento", "Suspensão", "Freios"],
+      "horario": "Seg a Sáb: 08:00 - 17:00",
+      "datas_disponiveis": ["2025-05-18", "2025-05-20", "2025-05-22"],
+      "localizacao": {
+        "lat": 40.633333,
+        "lng": -8.593056
+      }
+    },
+    {
+      "nome": "Feu Vert Aveiro",
+      "imagem": "/images/FeuVertAveiro.jpg",
+      "servicos": ["Troca de óleo", "Revisão geral", "Freios"],
+      "horario": "Seg a Sáb: 09:00 - 19:00",
+      "datas_disponiveis": ["2025-05-19", "2025-05-21", "2025-05-23"],
+      "localizacao": {
+        "lat": 40.6508189,
+        "lng": -8.6140683
+      }
+    },
+    {
+      "nome": "Auto Visto",
+      "imagem": "/images/AutoVisto.jpg",
+      "servicos": ["Injeção eletrônica", "Diagnóstico eletrônico", "Ar condicionado"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-20", "2025-05-22", "2025-05-24"],
+      "localizacao": {
+        "lat": 40.7426861,
+        "lng": -8.3797498
+      }
+    },
+    {
+      "nome": "Auto Oliveiras",
+      "imagem": "/images/AutoOliveiras.jpg",
+      "servicos": ["Suspensão", "Freios", "Troca de pneus"],
+      "horario": "Seg a Sáb: 08:00 - 17:00",
+      "datas_disponiveis": ["2025-05-18", "2025-05-20", "2025-05-22"],
+      "localizacao": {
+        "lat": 40.9367567,
+        "lng": -8.5067663
+      }
+    },
+    {
+      "nome": "Auto Marques",
+      "imagem": "/images/AutoMarques.jpg",
+      "servicos": ["Revisão geral", "Diagnóstico eletrônico", "Troca de óleo"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-19", "2025-05-21", "2025-05-23"],
+      "localizacao": {
+        "lat": 40.8976664,
+        "lng": -8.5194439
+      }
+    },
+    {
+      "nome": "Auto Dynamic",
+      "imagem": "/images/AutoDynamic.jpg",
+      "servicos": ["Alinhamento", "Suspensão", "Freios"],
+      "horario": "Seg a Sáb: 08:00 - 17:00",
+      "datas_disponiveis": ["2025-05-18", "2025-05-20", "2025-05-22"],
+      "localizacao": {
+        "lat": 40.369829,
+        "lng": -8.454347
+      }
+    },
+    {
+      "nome": "Águeda Peças",
+      "imagem": "/images/AguedaPecas.jpg",
+      "servicos": ["Injeção eletrônica", "Diagnóstico eletrônico", "Ar condicionado"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-20", "2025-05-22", "2025-05-24"],
+      "localizacao": {
+        "lat": 40.5739826,
+        "lng": -8.4483575
+      }
+    },
+    {
+      "nome": "Auto Reparadora de Aveiro",
+      "imagem": "/images/AutoReparadoraAveiro.jpg",
+      "servicos": ["Revisão geral", "Diagnóstico eletrônico", "Troca de óleo"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-19", "2025-05-21", "2025-05-23"],
+      "localizacao": {
+        "lat": 40.6435,
+        "lng": -8.6457
+      }
+    },
+    {
+      "nome": "Oficina Central de Aveiro",
+      "imagem": "/images/OficinaCentralAveiro.jpg",
+      "servicos": ["Alinhamento", "Suspensão", "Freios"],
+      "horario": "Seg a Sáb: 08:00 - 17:00",
+      "datas_disponiveis": ["2025-05-18", "2025-05-20", "2025-05-22"],
+      "localizacao": {
+        "lat": 40.6400,
+        "lng": -8.6530
+      }
+    },
+    {
+      "nome": "Mecânica Rápida Aveiro",
+      "imagem": "/images/MecanicaRapidaAveiro.jpg",
+      "servicos": ["Injeção eletrônica", "Diagnóstico eletrônico", "Ar condicionado"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-20", "2025-05-22", "2025-05-24"],
+      "localizacao": {
+        "lat": 40.6450,
+        "lng": -8.6400
+      }
+    },
+    {
+      "nome": "Auto Check Aveiro",
+      "imagem": "/images/AutoCheckAveiro.jpg",
+      "servicos": ["Revisão geral", "Diagnóstico eletrônico", "Troca de óleo"],
+      "horario": "Seg a Sex: 09:00 - 18:00",
+      "datas_disponiveis": ["2025-05-19", "2025-05-21", "2025-05-23"],
+      "localizacao": {
+        "lat": 40.6460,
+        "lng": -8.6480
+      }
+    }
+  ]
+}
+
