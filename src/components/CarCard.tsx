@@ -9,11 +9,16 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
 
   return (
 
-      <div className="card bg-stone-700  rounded-3xl mb-4 overflow-hidden shadow-xl text-white"
-              style={{ color: '#F8F8E0' }}>
+        <div
+          className="card bg-[#f8f5da] border-stone-900 rounded-3xl mb-4 overflow-hidden"
+          style={{
+            color: '#000000',
+            boxShadow: '0px 2px 10px 5px rgba(28, 25, 23, 0.2)' // sombra mais subtil e suave
+          }}
+        >
   
         {/* Topo: texto e imagem lado a lado */}
-        <div className="h-15 flex flex-row items-center justify-between px-2 mb-3 mt-2">
+        <div className="h-15 flex flex-row items-center justify-items-center px-1 mb-3 mt-2">
           {/* Texto à esquerda */}
           <div className="flex flex-row text-left z-10">
             <h2 className="card-title font-thin text-3xl">
@@ -25,19 +30,22 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
           </div>
   
           {/* Imagem à direita */}
-          <div className="h-29 flex-shrink-0 mt-15 z-20 -ml-10">
+          <div className="w-40 absolute right-0 mt-15 z-20 -ml-10">
             <img
               src={carro.imagem_url}
               alt={`${carro.marca} ${carro.modelo}`}
-              className="w-full h-full object-cover rounded-l-3xl"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
   
         {/* Parte de baixo: detalhes ou descrição */}
-        <div className="w-full  from-stone-900 to-stone-700 p-4 border-t border-stone-600 text-left rounded-2xl border-2"
-             style={{ borderColor: carColor }}>
-          <p>Matricula - {carro.matricula}</p>
+        <div
+          className="w-full p-4 text-left rounded-2xl border-2"
+          style={{borderColor: carColor, boxShadow: `inset 0 0 6px ${carColor}`}}
+        >
+
+          <p>Matrícula - {carro.matricula}</p>
           <p>Data fabrico - {carro.data_fabrico}</p>
           <p>Quilometragem - {carro.quilometragem}km</p>
         </div>

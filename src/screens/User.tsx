@@ -32,7 +32,7 @@ function User() {
         />
         <UserCard 
           name='Comunicar problema' 
-          onClick={() => setShowModal(true)} // ✅ abre o modal
+          onClick={() => setShowModal(true)}
         />
         <UserCard name='Acessibilidade' />
       </div>

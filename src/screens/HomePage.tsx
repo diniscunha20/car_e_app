@@ -38,8 +38,11 @@ function HomePage() {
       <div className='h-full px-3 mt-2 overflow-y-scroll'>
         <h1 className="text-2xl font-light text-left text-black">Welcome,</h1>
         <h1 className="text-4xl font-extrabold text-left text-black mb-3">
-          {localStorage.getItem('username') || 'Guest'}
+          {localStorage.getItem('username') || 'Guest'}!
         </h1>
+
+
+
 
         <div className="h-[80%] pb-15">
           {carros.map((carro, index) => (
@@ -59,10 +62,17 @@ function HomePage() {
 
         {/* Modal */}
         {showModal && (
-          <div className="fixed inset-0 z-40 bg-black/70 flex justify-center items-center">
+          <div
+            className="fixed inset-0 z-40 bg-black/80 flex justify-center items-center"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                setShowModal(false); // Fecha se clicar fora
+              }
+            }}
+          >
             <div className="relative z-50">
               <button
-                className="absolute top-2 right-2 text-xl text-white font-bold bg-red-600 rounded-full w-8 h-8"
+                className="absolute top-5 right-9 text-xl text-white font-bold bg-red-600 rounded-full w-8 h-8"
                 onClick={() => setShowModal(false)}
               >
                 ×

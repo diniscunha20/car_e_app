@@ -5,7 +5,7 @@ type UserCardProps = {
 
 function UserCard({name, onClick}: UserCardProps) {
     return (
-        <button className="btn rounded-3xl w-[85%] h-15 mb-6" onClick={onClick}>{name}</button>
+        <button className="btn bg-black rounded-3xl w-[85%] h-15 mb-6" onClick={onClick}>{name}</button>
     );
 }
 

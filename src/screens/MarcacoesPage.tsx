@@ -14,29 +14,28 @@ const MarcacoesPage = () => {
     <>
       <button
         onClick={() => window.history.back()}
-        className="text-black hover:underline ml-6 mt-4"
+        className="text-black font-black hover:underline ml-6 mt-4"
       >
         &lt;
       </button>
 
       <div className="max-w-3xl mx-auto p-6">
-
-        <h1 className="text-3xl font-bold mb-6 text-center text-primary">Marcações por veículo</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-black">Marcações por veículo</h1>
 
         {Object.keys(marcacoes).length === 0 ? (
-          <div className="alert alert-info shadow-lg">
+          <div className="bg-black text-[#fffadf] p-4 rounded-3xl shadow-md text-center">
             <span>Nenhuma marcação encontrada.</span>
           </div>
         ) : (
           Object.entries(marcacoes).map(([matricula, eventos]) => (
-            <div key={matricula} className="mb-6">
-              <div className="card bg-base-100 shadow-md border border-base-200">
-                <div className="card-body">
-                  <h2 className="card-title text-secondary">{matricula}</h2>
-                  <ul className="space-y-2">
+            <div key={matricula}>
+              <div className="bg-black rounded-3xl shadow-xl border border-[#fffadf]">
+                <div className="p-3 text-[#fffadf]">
+                  <h2 className="text-xl font-semibold ml-2 mb-3">{matricula}</h2>
+                  <ul className="space-y-4">
                     {Object.entries(eventos).map(([data, details]: any) => (
-                      <li key={data} className="bg-base-200 rounded p-3">
-                        <div className="flex flex-col">
+                      <li key={data} className="bg-[#1c1c1c] rounded-xl p-4 border border-[#fffadf]/30">
+                        <div className="flex flex-col space-y-1">
                           <span><strong>Data:</strong> {details.date}</span>
                           <span><strong>Hora:</strong> {details.hour}</span>
                           <span><strong>Problema:</strong> {details.prob}</span>
@@ -54,7 +53,7 @@ const MarcacoesPage = () => {
         )}
       </div>
     </>
-      );
+  );
 };
 
 export default MarcacoesPage;

@@ -54,7 +54,7 @@ const AddCarModal = () => {
   };
 
   return (
-    <div className="w-[90%] mx-auto bg-[#1e1e1e] border-2 border-white rounded-2xl p-6 shadow-xl text-white">
+    <div className="w-[90%] mx-auto bg-black border-2 border-white rounded-3xl p-6 shadow-xl text-white">
       <h2 className="text-2xl font-bold mb-4">Adicionar Novo Carro</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -62,28 +62,28 @@ const AddCarModal = () => {
           value={marca}
           onChange={(e) => setMarca(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-md bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
         />
         <input
           placeholder="Modelo"
           value={modelo}
           onChange={(e) => setModelo(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-md bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
         />
         <input
           placeholder="Matrícula"
           value={matricula}
           onChange={(e) => setMatricula(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-md bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
         />
         <input
           type="date"
           value={dataFabrico}
           onChange={(e) => setDataFabrico(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-md bg-transparent text-white"
+          className="w-full p-2 border border-white rounded-xl bg-transparent text-white"
         />
         <input
           type="number"
@@ -91,14 +91,14 @@ const AddCarModal = () => {
           value={quilometragem}
           onChange={(e) => setQuilometragem(Number(e.target.value))}
           required
-          className="w-full p-2 border border-white rounded-md bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
         />
 
         {/* Cor RGB */}
         <div>
           <label className="block text-sm font-semibold text-white mb-1">Cor</label>
           <select
-            className="w-full p-2 border border-white rounded-md bg-[#2b2b2b] text-white placeholder-gray-800"
+            className="w-full p-2 border border-white rounded-xl text-white placeholder-gray-800"
             onChange={(e) => {
               const selected = e.target.value;
               const colorMap: { [key: string]: [number, number, number] } = {
@@ -135,7 +135,7 @@ const AddCarModal = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md font-bold"
+          className="w-full bg-[#fffadf] text-black py-2 rounded-xl font-bold"
         >
           Guardar Carro
         </button>

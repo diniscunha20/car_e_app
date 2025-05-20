@@ -79,7 +79,7 @@ const CarDetails: React.FC = () => {
       <img
         src={carro.imagem_url}
         alt={`${carro.marca} ${carro.modelo}`}
-        className="ml-37 w-full h-full object-cover rounded-l-3xl"
+        className="ml-40 w-full h-full object-cover"
       />
     </div>
 
@@ -90,20 +90,20 @@ const CarDetails: React.FC = () => {
             style={{ backgroundColor: 'rgb(250, 234, 189)' }}>
             <button
               onClick={() => window.history.back()}
-              className="text-black hover:underline ml-3 mt-4 absolute z-40"
+              className="mt-5 ml-5 text-black hover:underline absolute z-40"
             >
               <strong>&lt;</strong>
             </button>
 
             <div className="h-full ml-2 flex flex-row">
 
-              <div className='flex-col z-0'>
+              <div className='flex-col z-0 mt-3'>
 
-                <h2 className="card-title font-thin text-6xl ml-10 italic">
+                <h2 className="card-title font-medium italic text-7xl ml-15">
                   {carro.marca}
                 </h2>
 
-                <h1 className="card-title font-bold text-8xl italic ">
+                <h1 className="card-title font-bold ml-5 text-8xl italic ">
                   {carro.modelo}
                 </h1>
 
