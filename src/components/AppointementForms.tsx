@@ -47,16 +47,16 @@ const AppointementForms: React.FC<Props> = ({ content, setShowModal }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-[#fdfadf] rounded-3xl border-4 border-gray-800 p-6 shadow-md">
-      <button
-        onClick={() => setShowModal(false)}
-        className="text-black hover:underline ml-3 mt-4"
-      >
-        <FontAwesomeIcon icon={faTimes} className="text-xl" />
-      </button>
+  <div className="relative w-[85%] mx-auto bg-[#fdfadf] rounded-3xl border-4 border-gray-800 p-6 shadow-md">
+    <button
+      onClick={() => setShowModal(false)}
+      className="absolute top-4 right-4 bg-stone-800 hover:bg-gray-400 text-[#fdfadf] rounded-full w-7 h-7 flex items-center justify-center shadow"
+    >
+      <FontAwesomeIcon icon={faTimes} className="text-lg" />
+    </button>
 
       <div className="flex justify-between items-start">
-        <h1 className="text-3xl font-bold text-gray-800 leading-tight">{content}</h1>
+        <h1 className="text-3xl font-bold text-black leading-tight">{content}</h1>
         <img
           src="https://via.placeholder.com/100x70.png?text=Oficina"
           alt="Oficina"

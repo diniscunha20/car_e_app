@@ -1,6 +1,5 @@
 Poder dar review e ver comentarios
 
-Modais consistentes
 
 
 
@@ -19,4 +18,6 @@ mudar botão do lixo
 fotos em novos carros adicionados
 
 dados serem unicos para cada perfil
+
+fotos nas oficinas
 
