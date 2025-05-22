@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Carro } from "../assets/Props";
 import { useParams, useNavigate } from 'react-router-dom';
+import {useMapContext} from "./MapContext.tsx";
 
 interface Props {
   data: string;
@@ -11,7 +12,7 @@ interface Props {
 const EventDetailsForm: React.FC<Props> = ({ data, desc, setShowModal }) => {
   const [description, setDescription] = useState(desc);
   const [date, setDate] = useState(data);
-
+  const { reset } = useMapContext();
   const { matricula } = useParams<{ matricula: string }>();
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ const EventDetailsForm: React.FC<Props> = ({ data, desc, setShowModal }) => {
 
     localStorage.setItem('carros', JSON.stringify(updatedCarros));
     alert('Evento editado com sucesso!');
+    reset();
     setShowModal(false);
   };
 
@@ -65,6 +67,7 @@ const EventDetailsForm: React.FC<Props> = ({ data, desc, setShowModal }) => {
 
     localStorage.setItem('carros', JSON.stringify(updatedCarros));
     alert('Evento removido com sucesso!');
+    reset();
     setShowModal(false);
   };
 

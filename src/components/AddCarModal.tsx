@@ -54,7 +54,7 @@ const AddCarModal = () => {
   };
 
   return (
-    <div className="w-[90%] mx-auto bg-black border-2 border-white rounded-3xl p-6 shadow-xl text-white">
+    <div className="w-[90%] mx-auto bg-[#fff7d0] border-2 border-stone-800 rounded-3xl p-6 shadow-xl text-white">
       <h2 className="text-2xl font-bold mb-4">Adicionar Novo Carro</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input

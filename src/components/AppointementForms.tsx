@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Carro } from "../assets/Props";
-import {useNavigate} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {useMapContext} from "./MapContext.tsx";
 
 interface Props {
   content: string;
@@ -15,10 +16,47 @@ const AppointementForms: React.FC<Props> = ({ content, setShowModal }) => {
   const [hour, setHour] = useState("");
   const [carro, setCarro] = useState("");
   const [prob, setProb] = useState("");
+  const [availableCars, setAvailableCars] = useState<Carro[]>([]);
+  const [availableEvents, setAvailableEvents] = useState<string[]>([]);
 
+  const { car, event, reset } = useMapContext(); // Context values
   const navigate = useNavigate();
 
   const formValid = date && hour && carro && prob;
+
+  // Load car list from localStorage on mount
+  useEffect(() => {
+    const stored = localStorage.getItem("carros");
+    if (stored) {
+      const cars = JSON.parse(stored) as Carro[];
+      setAvailableCars(cars);
+
+      const matchedCar = cars.find(c => c.modelo === car || c.matricula === car);
+      if (matchedCar) {
+        setCarro(matchedCar.matricula);
+        const events = Object.keys(matchedCar.eventos);
+        setAvailableEvents(events);
+
+        if (event && events.includes(event)) {
+          setProb(event);
+        }
+      }
+    }
+  }, [car, event]);
+
+  // Update events list when selected car changes
+  useEffect(() => {
+    const selectedCar = availableCars.find(c => c.matricula === carro);
+    if (selectedCar) {
+      const events = Object.keys(selectedCar.eventos);
+      setAvailableEvents(events);
+
+      // Reset prob if not valid for the new car
+      if (!events.includes(prob)) {
+        setProb("");
+      }
+    }
+  }, [carro]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,21 +80,23 @@ const AppointementForms: React.FC<Props> = ({ content, setShowModal }) => {
 
     localStorage.setItem("marcacoes", JSON.stringify(marcacoes));
     alert("Marcação adicionada com sucesso!");
+
+    reset();
     setShowModal(false);
     navigate("/");
   };
 
   return (
-    <div className="max-w-md mx-auto bg-[#fdfadf] rounded-3xl border-4 border-gray-800 p-6 shadow-md">
-      <button
-        onClick={() => setShowModal(false)}
-        className="text-black hover:underline ml-3 mt-4"
-      >
-        <FontAwesomeIcon icon={faTimes} className="text-xl" />
-      </button>
+  <div className="relative w-[85%] mx-auto bg-[#fdfadf] rounded-3xl border-4 border-gray-800 p-6 shadow-md">
+    <button
+      onClick={() => setShowModal(false)}
+      className="absolute top-4 right-4 bg-stone-800 hover:bg-gray-400 text-[#fdfadf] rounded-full w-7 h-7 flex items-center justify-center shadow"
+    >
+      <FontAwesomeIcon icon={faTimes} className="text-lg" />
+    </button>
 
       <div className="flex justify-between items-start">
-        <h1 className="text-3xl font-bold text-gray-800 leading-tight">{content}</h1>
+        <h1 className="text-3xl font-bold text-black leading-tight">{content}</h1>
         <img
           src="https://via.placeholder.com/100x70.png?text=Oficina"
           alt="Oficina"
@@ -89,24 +129,16 @@ const AppointementForms: React.FC<Props> = ({ content, setShowModal }) => {
           <label className="block text-sm font-medium text-gray-700">Carro</label>
           <select
             className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300 text-gray-700"
-            defaultValue="default"
+            value={carro}
             onChange={(e) => setCarro(e.target.value)}
             required
           >
-            <option className="text-gray-700" value="default" disabled>
-              Selecione o veículo ...
-            </option>
-            {(() => {
-              const stored = localStorage.getItem("carros");
-              if (!stored) return null;
-
-              const carros = JSON.parse(stored);
-              return carros.map((carro: Carro) => (
-                <option key={carro.matricula} value={carro.matricula} className="text-gray-700">
-                  {carro.marca + " " + carro.modelo}
-                </option>
-              ));
-            })()}
+            <option value="" disabled>Selecione o veículo ...</option>
+            {availableCars.map((c) => (
+              <option key={c.matricula} value={c.matricula}>
+                {c.marca} {c.modelo}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -114,28 +146,14 @@ const AppointementForms: React.FC<Props> = ({ content, setShowModal }) => {
           <label className="block text-sm font-medium text-gray-700">Problema</label>
           <select
             className="w-full rounded-md bg-[#fcf8e3] p-2 border border-gray-300 text-gray-700"
-            defaultValue="default"
+            value={prob}
             onChange={(e) => setProb(e.target.value)}
             required
           >
-            <option className="text-gray-700" value="default" disabled>
-              Selecione o que mais se adequa...
-            </option>
-            {(() => {
-              const stored = localStorage.getItem("carros");
-              if (!stored || !carro) return null;
-
-              const carros = JSON.parse(stored);
-              const selectedCarro = carros.find((car: Carro) => car.matricula === carro);
-
-              if (!selectedCarro || !selectedCarro.eventos) return null;
-
-              return Object.entries(selectedCarro.eventos).map(([desc]) => (
-                <option key={desc} value={desc} className="text-gray-700">
-                  {desc}
-                </option>
-              ));
-            })()}
+            <option value="" disabled>Selecione o que mais se adequa...</option>
+            {availableEvents.map((ev) => (
+              <option key={ev} value={ev}>{ev}</option>
+            ))}
           </select>
         </div>
 

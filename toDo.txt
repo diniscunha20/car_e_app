@@ -1,8 +1,5 @@
 Poder dar review e ver comentarios
 
-Modais consistentes
-
-
 
 Adicionar/modificar foto de perfil
 
@@ -10,13 +7,11 @@ MAIS BONITO QUE O DA MARIANA MARQUES
 
 editar informações do carro
 
-
-
-
-
 mudar botão do lixo
 
 fotos em novos carros adicionados
 
 dados serem unicos para cada perfil
+
+fotos nas oficinas
 
