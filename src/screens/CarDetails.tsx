@@ -86,8 +86,13 @@ const CarDetails: React.FC = () => {
       
       <div className="relative car-details h-11/12">
             
-          <div className='relative h-1/4 rounded-b-4xl'
-            style={{ backgroundColor: 'rgb(250, 234, 189)' }}>
+        <div
+          className="relative h-1/4"
+          style={{
+            backgroundColor: 'rgb(250, 234, 189)',
+            boxShadow: 'inset 0 -15px 20px -4px rgba(0, 0, 0, 0.3)', // sombra apenas no fundo
+          }}
+        >
             <button
               onClick={() => window.history.back()}
               className="mt-5 ml-5 text-black hover:underline absolute z-40"
@@ -99,21 +104,22 @@ const CarDetails: React.FC = () => {
 
               <div className='flex-col z-0 mt-3'>
 
-                <h2 className="card-title font-medium italic text-7xl ml-15">
+              <div className="max-w-full overflow-hidden">
+                <h2 className="truncate font-medium italic text-7xl">
                   {carro.marca}
                 </h2>
+              </div>
 
-                <h1 className="card-title font-bold ml-5 text-8xl italic ">
-                  {carro.modelo}
-                </h1>
+
+              <h1 className="card-title font-bold ml-5 text-8xl italic ">
+                {carro.modelo}
+              </h1>
 
               </div>
 
-              
-
             </div>
 
-          </div>
+            </div>
 
           <div className='h-3/4' style={{color: textColor  }}>
 
@@ -263,19 +269,12 @@ const CarDetails: React.FC = () => {
 
       {showModal && (
       <div
-        className="fixed inset-0 bg-black/70 flex justify-center items-center z-20"
+        className="fixed inset-0 bg-black/75 flex justify-center items-center z-20"
         onClick={() => setShowModal(false)}
       >
         <div
-          className="h-[35%] bg-white p-6 rounded-2xl shadow-2xl w-96 ml-3 mr-3 z-30"
           onClick={(e) => e.stopPropagation()}
         >
-          <button
-            onClick={() => setShowModal(false)}
-            className="text-black hover:underline ml-3 mt-4"
-          >
-            <FontAwesomeIcon icon={faTimes} className="text-xl" />
-          </button>
           <EventForms setShowModal={setShowModal}></EventForms>
         </div>
       </div>
