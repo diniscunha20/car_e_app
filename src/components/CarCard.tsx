@@ -10,9 +10,9 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
   return (
 
         <div
-          className="card bg-[#f8f5da] border-stone-900 rounded-3xl mb-4 overflow-hidden"
+          className="card bg-stone-800 border-stone-900 rounded-3xl mb-4 overflow-hidden"
           style={{
-            color: '#000000',
+            color: '#fff7d0',
             boxShadow: '0px 2px 10px 5px rgba(28, 25, 23, 0.2)' // sombra mais subtil e suave
           }}
         >
@@ -41,7 +41,7 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
   
         {/* Parte de baixo: detalhes ou descrição */}
         <div
-          className="w-full p-4 text-left rounded-2xl border-2"
+          className="w-full p-4 text-left rounded-2xl border-2 bg-stone-700"
           style={{borderColor: carColor, boxShadow: `inset 0 0 6px ${carColor}`}}
         >
 
