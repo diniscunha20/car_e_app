@@ -143,7 +143,7 @@ const MapComponent = () => {
 							type="text"
 							defaultValue={searchQuery}
 							placeholder="Search a place..."
-							className="p-2 bg-stone-800 rounded-md shadow-md w-full text-white pl-10 pr-10"
+							className="p-2 bg-stone-800 rounded-md shadow-md w-full text-white pr-10"
 						/>
 						<button type="submit" className="absolute right-3 top-2 text-white text-lg">
 							<FontAwesomeIcon icon={faSearch} />
@@ -155,7 +155,7 @@ const MapComponent = () => {
 			<MapContainer
 				center={defaultPosition}
 				zoom={12}
-				scrollWheelZoom={false}
+				scrollWheelZoom={true}
 				style={{ height: "100vh", width: "100%", zIndex: "0" }}
 			>
 				<MapController onMapReady={(mapInstance) => { mapRef.current = mapInstance; }} />
