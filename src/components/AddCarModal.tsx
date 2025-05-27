@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-const AddCarModal = () => {
+type AddCarModalProps = {
+  onClose: () => void;
+};
+
+const AddCarModal = ({ onClose }: AddCarModalProps) => {
   const [marca, setMarca] = useState("");
   const [modelo, setModelo] = useState("");
   const [matricula, setMatricula] = useState("");
@@ -30,7 +34,7 @@ const AddCarModal = () => {
       matricula,
       data_fabrico: dataFabrico,
       quilometragem,
-      imagem_url: imagemUrl,
+      imagem_url: "/images/placeholder.png",
       cor_rgb: corRGB,
       eventos,
     };
@@ -51,10 +55,12 @@ const AddCarModal = () => {
     setImagemUrl("");
     setCorRGB([0, 0, 0]);
     setEventos({});
+
+    onClose();
   };
 
   return (
-    <div className="w-[90%] mx-auto bg-[#fff7d0] border-2 border-stone-800 rounded-3xl p-6 shadow-xl text-white">
+    <div className="w-[90%] mx-auto bg-[#fff7d0] border-2 border-stone-800 rounded-3xl p-6 shadow-xl text-black">
       <h2 className="text-2xl font-bold mb-4">Adicionar Novo Carro</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -62,28 +68,28 @@ const AddCarModal = () => {
           value={marca}
           onChange={(e) => setMarca(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-black rounded-xl bg-transparent text-black placeholder-gray-600"
         />
         <input
           placeholder="Modelo"
           value={modelo}
           onChange={(e) => setModelo(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-black rounded-xl bg-transparent text-black placeholder-gray-600"
         />
         <input
           placeholder="Matrícula"
           value={matricula}
           onChange={(e) => setMatricula(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-black rounded-xl bg-transparent text-black placeholder-gray-600"
         />
         <input
           type="date"
           value={dataFabrico}
           onChange={(e) => setDataFabrico(e.target.value)}
           required
-          className="w-full p-2 border border-white rounded-xl bg-transparent text-white"
+          className="w-full p-2 border border-black rounded-xl bg-transparent text-black"
         />
         <input
           type="number"
@@ -91,14 +97,14 @@ const AddCarModal = () => {
           value={quilometragem}
           onChange={(e) => setQuilometragem(Number(e.target.value))}
           required
-          className="w-full p-2 border border-white rounded-xl bg-transparent text-white placeholder-gray-400"
+          className="w-full p-2 border border-black rounded-xl bg-transparent text-black placeholder-gray-600"
         />
 
         {/* Cor RGB */}
         <div>
-          <label className="block text-sm font-semibold text-white mb-1">Cor</label>
+          <label className="block text-sm font-semibold text-black mb-1">Cor</label>
           <select
-            className="w-full p-2 border border-white rounded-xl text-white placeholder-gray-800"
+            className="w-full p-2 border border-black rounded-xl text-black placeholder-gray-600"
             onChange={(e) => {
               const selected = e.target.value;
               const colorMap: { [key: string]: [number, number, number] } = {
@@ -132,10 +138,9 @@ const AddCarModal = () => {
           </select>
         </div>
 
-
         <button
           type="submit"
-          className="w-full bg-[#fffadf] text-black py-2 rounded-xl font-bold"
+          className="w-full bg-black text-white py-2 rounded-xl font-bold"
         >
           Guardar Carro
         </button>

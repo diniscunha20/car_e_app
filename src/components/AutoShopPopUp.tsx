@@ -71,7 +71,7 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content})
 
                         <div className='h-full flex justify-end w-1/2 mt-10'>
                             <img
-                                src={oficina?.imagem_url}
+                                src={oficina?.imagem}
                                 className="w-9/10 h-9/10 border-2 border-white object-cover rounded-xl left-10"
                             />
                             

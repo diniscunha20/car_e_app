@@ -66,7 +66,7 @@ function HomePage() {
             className="fixed inset-0 z-40 bg-black/80 flex justify-center items-center"
             onClick={(e) => {
               if (e.target === e.currentTarget) {
-                setShowModal(false); // Fecha se clicar fora
+                setShowModal(false); // Close if click outside modal content
               }
             }}
           >
@@ -77,7 +77,7 @@ function HomePage() {
               >
                 ×
               </button>
-              <AddCarModal />
+              <AddCarModal onClose={() => setShowModal(false)} />
             </div>
           </div>
         )}

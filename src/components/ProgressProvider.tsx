@@ -26,7 +26,6 @@ const ProgressProvider: React.FC = () => {
     <div>
       {showProgress && <ProgressBar max={maxProgress} progress={progress} />}
 
-      
     </div>
   );
 };

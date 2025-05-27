@@ -90,39 +90,58 @@ const CarDetails: React.FC = () => {
           </div>
 
           <div className='h-2/11'>
-            <h2 className="text-xl font-bold mb-2 ml-3" style={{ color: textColor }}>Próximo evento</h2>
-            {sortedEventos.slice(0, 1).map(([evento, data]) => (
-              <div
-                key={evento}
-                className="h-3/4 w-[95%] flex items-center rounded-r-3xl"
-                style={{ backgroundColor: baseColor, color: textColor }}
-                onClick={() => {
-                  setCar(carro?.modelo)
-                  setEvent(evento)
-                  setShowModalEventInfo(true);
-                  selectedDataUpdate(data);
-                  selectedDescUpdate(evento);
-                }}
-              >
-                <h1 className="ml-3 w-[70%]">
-                  <strong>{evento}:</strong> {data}
-                </h1>
+                <h2 className="text-xl font-bold mb-2 ml-3" style={{ color: textColor }}>Próximo evento</h2>
+                {sortedEventos.slice(0, 1).map(([evento, data]) => {
+                  const today = new Date();
+                  const eventDate = new Date(data);
+                  const isDue = eventDate <= today;
 
-                <button
-                  className="btn border-none px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
-                  style={{ backgroundColor: brightColor, color: textColor }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCar(carro.modelo);
-                    setEvent(evento);
-                    navigate("/map");
-                  }}
-                >
-                  Marcar
-                </button>
+                  return (
+                    <div
+                      key={evento}
+                      className="h-3/4 w-[95%] flex items-center justify-between rounded-r-3xl px-4 py-2"
+                      style={{ backgroundColor: baseColor, color: textColor }}
+                      onClick={() => {
+                        setCar(carro?.modelo);
+                        setEvent(evento);
+                        setShowModalEventInfo(true);
+                        selectedDataUpdate(data);
+                        selectedDescUpdate(evento);
+                      }}
+                    >
+                      <div className="flex flex-col w-[70%]">
+                        <h1>
+                          <strong>{evento}:</strong> {data}
+                        </h1>
+                        {isDue && (
+                          <div className="flex items-center mt-1 text-red-500 font-bold text-l">
+                            <span className="mr-1">⚠️</span>
+                            Event is due
+                          </div>
+                        )}
+                      </div>
+
+                      <button
+                        className="btn border-none px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
+                        style={{
+                          backgroundColor: !isDue ? brightColor : 'white',
+                          color: !isDue ? textColor : 'black',
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCar(carro.modelo);
+                          setEvent(evento);
+                          navigate("/map");
+                        }}
+                      >
+                        Marcar
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
+
+
 
           <div className='flex flex-row border-t-4 mt-10' style={{ borderColor: textColor }}>
             <div className='w-1/2'>
@@ -172,26 +191,44 @@ const CarDetails: React.FC = () => {
           </div>
 
           <div className='h-[50%] overflow-y-auto'>
-            {sortedEventos.slice(1).map(([evento, data], index) => (
-              <div
-                key={evento}
-                className={`h-1/4 mt-4 w-[95%] flex items-center ${index % 2 === 0 ? 'rounded-l-3xl ml-5' : 'rounded-r-3xl'}`}
-                style={{ backgroundColor: baseColor }}
-                onClick={() => {
-                  setCar(carro?.modelo)
-                  setEvent(evento)
-                  setShowModalEventInfo(true);
-                  selectedDataUpdate(data);
-                  selectedDescUpdate(evento);
-                }}
-              >
-                <h1 className={`${index % 2 === 0 ? 'ml-5 w-[70%]' : 'ml-10 w-[55%]'}`}>
-                  <strong>{evento}:</strong> {data}
-                </h1>
-              </div>
-            ))}
+            {sortedEventos.slice(1).map(([evento, data], index) => {
+              const today = new Date();
+              const eventDate = new Date(data);
+              const isDue = eventDate <= today;
+
+              return (
+                <div
+                  key={evento}
+                  className={`h-1/4 mt-4 w-[95%] flex items-center justify-between px-4 py-2
+                    ${index % 2 === 0 ? 'rounded-l-3xl ml-5' : 'rounded-r-3xl'}`
+                  }
+                  style={{ backgroundColor: baseColor }}
+                  onClick={() => {
+                    setCar(carro?.modelo);
+                    setEvent(evento);
+                    setShowModalEventInfo(true);
+                    selectedDataUpdate(data);
+                    selectedDescUpdate(evento);
+                  }}
+                >
+                  <div className={`${index % 2 === 0 ? 'ml-1 w-[100%]' : 'ml-3 w-[100%]'} flex  flex-row justify-between`}>
+                    <h1 className='w-[65%] items-center '>
+                      <strong>{evento}:</strong> {data}
+                    </h1>
+                    {isDue && (
+                      <div className="flex flex-row items-center w-[35%] mt-1 text-red-500 font-bold text-sm">
+                        <span className="mr-2 text-2xl">⚠️</span>
+                        <strong>Event is due</strong>
+                      </div>
+
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
+
+
 
         <div className='fixed'>
           <NavBar />
@@ -199,16 +236,14 @@ const CarDetails: React.FC = () => {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-20" onClick={() => setShowModal(false)}>
-          <div className="h-[35%] bg-white p-6 rounded-2xl shadow-2xl w-96 ml-3 mr-3 z-30" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-20 flex-center" onClick={() => setShowModal(false)}>
             <button onClick={() => setShowModal(false)} className="text-black hover:underline ml-3 mt-4">
               <FontAwesomeIcon icon={faTimes} className="text-xl" />
             </button>
             <EventForms setShowModal={setShowModal} />
-          </div>
         </div>
       )}
-
+    </div>
       {showModalEventInfo && (
         <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-20" onClick={() => {
           reset();

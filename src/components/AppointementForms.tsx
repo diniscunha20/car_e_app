@@ -58,33 +58,49 @@ const AppointementForms: React.FC<Props> = ({ content, setShowModal }) => {
     }
   }, [carro]);
 
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     const stored = localStorage.getItem("carros");
     if (!stored) return;
-
+  
+    const carros = JSON.parse(stored);
+  
     const marcacoesStored = localStorage.getItem("marcacoes");
     const marcacoes = marcacoesStored ? JSON.parse(marcacoesStored) : {};
-
+  
     if (!marcacoes[carro]) {
       marcacoes[carro] = {};
     }
-
+  
     marcacoes[carro][date] = {
       date,
       prob,
       hour,
       description,
     };
-
+  
+    // Find the car by modelo, matricula, or marca — adjust as you identify the car
+    const carroIndex = carros.findIndex(c => c.modelo === carro || c.matricula === carro || c.marca === carro);
+  
+    if (carroIndex !== -1) {
+      // Remove the event matching the selected prob
+      if (carros[carroIndex].eventos && carros[carroIndex].eventos[prob]) {
+        delete carros[carroIndex].eventos[prob];
+      }
+    }
+  
     localStorage.setItem("marcacoes", JSON.stringify(marcacoes));
-    alert("Marcação adicionada com sucesso!");
-
+    localStorage.setItem("carros", JSON.stringify(carros));
+  
+    alert("Marcação adicionada com sucesso e evento removido!");
+  
     reset();
     setShowModal(false);
     navigate("/");
   };
+  
 
   return (
   <div className="relative w-[85%] mx-auto bg-[#fdfadf] rounded-3xl border-4 border-gray-800 p-6 shadow-md">
