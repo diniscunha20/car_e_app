@@ -36,7 +36,7 @@ const CarCard: React.FC<{ carro: Carro }> = ({ carro }) => {
           />
         </div>
         {hasDueEvents && (
-          <div className="absolute -top-5 right-4 flex items-center text-red-600 font-semibold text-xl">
+          <div className="absolute -top-5 right-4 flex items-center text-red-600 font-light text-m">
             ⚠️ Has due events
           </div>
         )}

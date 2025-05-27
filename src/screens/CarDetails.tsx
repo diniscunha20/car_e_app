@@ -12,6 +12,9 @@ import {useMapContext} from "../components/MapContext.tsx";
 const CarDetails: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalEventInfo, setShowModalEventInfo] = useState(false);
+  const [showDetailsModal, setDetailsModal] = useState(false);
+  
+
   const { matricula } = useParams<{ matricula: string }>();
   const navigate = useNavigate();
 
@@ -85,9 +88,19 @@ const CarDetails: React.FC = () => {
         </div>
 
         <div className='h-3/4' style={{ color: textColor }}>
-          <div className='h-1/11'>
-            <h1 className="card-title font-normal text-2xl ml-6 mt-4 italic">{carro.matricula}</h1>
+          <div className='h-1/11 flex flex-row -ml-5'>
+            <button
+                onClick={() => { console.log("New modal opened");setDetailsModal(true)}}
+                className="h-[60%] w-[20%] bg-white text-black text-sm font-bold rounded-md px-1 py-0.5 ml-7 mt-2 shadow z-20"
+                style={{
+                  backgroundColor: baseColor ,
+                  color: textColor,
+                }}
+                >
+                Details
+              </button>
           </div>
+
 
           <div className='h-2/11'>
                 <h2 className="text-xl font-bold mb-2 ml-3" style={{ color: textColor }}>Próximo evento</h2>
@@ -120,12 +133,12 @@ const CarDetails: React.FC = () => {
                           </div>
                         )}
                       </div>
-
+                        
                       <button
                         className="btn border-none px-4 py-2 rounded-lg shadow hover:bg-indigo-700"
                         style={{
-                          backgroundColor: !isDue ? brightColor : 'white',
-                          color: !isDue ? textColor : 'black',
+                          backgroundColor: brightColor ,
+                          color: textColor,
                         }}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -183,7 +196,7 @@ const CarDetails: React.FC = () => {
                 style={{ color: baseColor, background: textColor }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     strokeWidth="3" stroke="currentColor" className="size-4">
+                     strokeWidth="3" stroke="currentColor" className="size-4 ml-1">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9L14.394 18m-4.788 0L9.26 9m9.968-3.21L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79M19.228 5.79a48.108 48.108 0 00-3.478-.397m-12 .562a48.11 48.11 0 013.478-.397m7.5 0V4.478c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916" />
                 </svg>
               </button>
@@ -236,7 +249,7 @@ const CarDetails: React.FC = () => {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-20 flex-center" onClick={() => setShowModal(false)}>
+        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-20 flex-center backdrop-blur-sm " onClick={() => setShowModal(false)}>
             <button onClick={() => setShowModal(false)} className="text-black hover:underline ml-3 mt-4">
               <FontAwesomeIcon icon={faTimes} className="text-xl" />
             </button>
@@ -245,7 +258,7 @@ const CarDetails: React.FC = () => {
       )}
     </div>
       {showModalEventInfo && (
-        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-20" onClick={() => {
+        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-20 backdrop-blur-sm " onClick={() => {
           reset();
           setShowModalEventInfo(false);
         }}>
@@ -260,8 +273,54 @@ const CarDetails: React.FC = () => {
           </div>
         </div>
       )}
+
+{showDetailsModal && carro && (
+  <div
+    className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-30"
+    onClick={() => setDetailsModal(false)}
+  >
+    <div
+      className="relative p-8 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] w-full max-w-md mx-4 z-40 transition-all"
+      onClick={(e) => e.stopPropagation()}
+      style={{ backgroundColor: 'rgb(250, 234, 189)' }}
+    >
+      <button
+        onClick={() => setDetailsModal(false)}
+        className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors"
+      >
+        <FontAwesomeIcon icon={faTimes} className="text-2xl" />
+      </button>
+
+      <div className="text-center text-gray-800">
+        <h2 className="text-lg font-medium tracking-wide text-gray-500 mb-1">
+          {carro.marca}
+        </h2>
+        <h1 className="text-5xl font-extrabold italic text-gray-900 mb-6">
+          {carro.modelo}
+        </h1>
+
+        <img
+          src={carro.imagem_url}
+          alt={`${carro.marca} ${carro.modelo}`}
+          className=" bg-white mx-auto w-64 h-auto rounded-xl shadow-md mb-6 transition-transform hover:scale-105"
+        />
+
+        <div className="space-y-2 text-sm text-left px-4">
+          <p><span className="font-bold text-black">Matrícula:</span> {carro.matricula}</p>
+          <p><span className="font-bold text-black">Cor (RGB):</span> {carro.cor_rgb.join(', ')}</p>
+          <p><span className="font-bold text-black">Data de fabrico:</span> {carro.data_fabrico}</p>
+          <p><span className="font-bold text-black">Quilometragem:</span> {carro.quilometragem.toLocaleString()} km</p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+
     </div>
   );
+
+  
 };
 
 export default CarDetails;

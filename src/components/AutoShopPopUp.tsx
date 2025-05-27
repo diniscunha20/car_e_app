@@ -26,7 +26,7 @@ const AutoShopPopUp: React.FC<BottomPopupProps> = ({ visible, onClose, content})
 
   return (
     <div
-        className="h-full bg-black/50 fixed bottom-0 left-0 right-0 shadow-lg border-tz-100 "
+        className="h-full bg-black/50 fixed bottom-0 left-0 right-0 shadow-lg border-tz-100 backdrop-blur-sm  "
         onClick={onClose}
     >
         <div className="h-6/10 bg-neutral-900 fixed bottom-0 left-0 right-0 rounded-t-3xl border-b-67 border-white"
